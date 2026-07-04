@@ -3,12 +3,29 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Estudio de manicura fine art: esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda tu cita por WhatsApp en un minuto."/>
+<meta name="theme-color" content="#faf9f6"/>
+<link rel="canonical" href="https://danteretamales1102-arch.github.io/defenanails/"/>
+<!-- Open Graph: preview al compartir en Instagram / WhatsApp -->
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_CL"/>
+<meta property="og:site_name" content="deFeñaNails Fine Art"/>
+<meta property="og:title" content="deFeñaNails Fine Art — Manicura de Autor"/>
+<meta property="og:description" content="Esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda tu cita por WhatsApp."/>
+<meta property="og:url" content="https://danteretamales1102-arch.github.io/defenanails/"/>
+<meta property="og:image" content="https://danteretamales1102-arch.github.io/defenanails/logo.png"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="deFeñaNails Fine Art — Manicura de Autor"/>
+<meta name="twitter:description" content="Esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda por WhatsApp."/>
+<meta name="twitter:image" content="https://danteretamales1102-arch.github.io/defenanails/logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="favicon.png" rel="icon" type="image/png"/>
 <link href="logo-mark.png" rel="apple-touch-icon"/>
-<title>deFeñaNails Fine Art | Soft Minimalism</title>
+<title>deFeñaNails Fine Art — Manicura de Autor y Press-on Personalizados</title>
 <style>
   body { font-family: 'Manrope', sans-serif; }
   .glass-card {
@@ -43,7 +60,37 @@
   }
   .brand-ring { box-shadow: 0 0 0 1px rgba(255,255,255,0.7), 0 6px 18px rgba(201,143,191,0.25); }
   .brand-glow { box-shadow: 0 10px 40px rgba(199,226,233,0.35), 0 4px 24px rgba(235,211,231,0.3); }
+
+  /* ── UX global ─────────────────────────────────────────────────────────── */
+  html { scroll-behavior: smooth; }
+  [id] { scroll-margin-top: 96px; }            /* anclas no quedan bajo el nav fijo */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 2px solid #815154; outline-offset: 3px; border-radius: 4px;
+  }
+  /* FAQ accordion */
+  details.faq summary { list-style: none; cursor: pointer; }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq .faq-icon { transition: transform .3s ease; }
+  details.faq[open] .faq-icon { transform: rotate(45deg); }
+  /* Respeto a usuarios con movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
 </style>
+<!-- Datos estructurados: ficha de negocio local para Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NailSalon",
+  "name": "deFeñaNails Fine Art",
+  "url": "https://danteretamales1102-arch.github.io/defenanails/",
+  "image": "https://danteretamales1102-arch.github.io/defenanails/logo.png",
+  "telephone": "+56977562949",
+  "priceRange": "$$",
+  "sameAs": ["https://www.instagram.com/defenanails"]
+}
+</script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -149,6 +196,22 @@ function formatCLP(valor, conPrefijo = true) {
 }
 function precioLabel(item) {
   return (item.desde ? "Desde " : "") + formatCLP(item.precio);
+}
+
+// ─── FALLBACKS DE IMAGEN (las fotos viven en un CDN externo) ────────────────
+/** Si una foto de press-on falla, la reemplaza por la acuarela de marca */
+function pressOnFallback(img) {
+  const cont = img.parentElement;
+  img.remove();
+  cont.classList.add("brand-gradient");
+  cont.insertAdjacentHTML("afterbegin",
+    '<div class="absolute inset-0 flex items-center justify-center">' +
+    '<span class="material-symbols-outlined text-white/80" style="font-size:56px">magic_button</span></div>');
+}
+/** Si una foto de la galería falla, oculta su celda */
+function ocultarTile(img) {
+  const tile = img.closest(".gal-tile") || img.parentElement;
+  if (tile) tile.style.display = "none";
 }
 
 // ─── SERVICIOS PRINCIPALES (SRV-001 → SRV-005) ───────────────────────────────
@@ -397,21 +460,24 @@ function renderComplementos() {
   `).join("");
 }
 
-/** Inyecta la galería Press-On */
+/** Inyecta la galería Press-On (info siempre visible: en móvil no existe hover) */
 function renderPressOn() {
   const container = document.getElementById("press-on-gallery");
   container.innerHTML = PRESS_ON_COLLECTION.map(p => `
-    <div class="min-w-[300px] md:min-w-[400px] snap-center">
-      <div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[3/4]">
+    <div class="min-w-[280px] md:min-w-[400px] snap-center">
+      <div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[3/4] bg-surface-container"
+           onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
         <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-             src="${p.imagen_url}" alt="${p.imagen_alt}"/>
-        <div class="absolute bottom-6 left-6 right-6">
-          <div class="glass-card p-4 rounded-lg flex justify-between items-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+             loading="lazy" decoding="async"
+             src="${p.imagen_url}" alt="${p.imagen_alt}"
+             onerror="pressOnFallback(this)"/>
+        <div class="absolute bottom-4 left-4 right-4">
+          <div class="glass-card p-4 rounded-lg flex justify-between items-center gap-3 transition-transform duration-300 group-hover:-translate-y-1">
             <div>
               <h4 class="font-label-sm text-label-sm font-bold uppercase">${p.nombre}</h4>
               <p class="text-[12px] text-secondary">${p.coleccion}</p>
             </div>
-            <span class="text-primary font-bold whitespace-nowrap">${precioLabel(p)}</span>
+            <span class="text-primary font-bold whitespace-nowrap text-[13px]">${precioLabel(p)}</span>
           </div>
         </div>
       </div>
@@ -469,42 +535,99 @@ document.addEventListener("DOMContentLoaded", () => {
       <span class="font-headline-md text-headline-md italic text-on-surface tracking-tighter">deFeñaNails</span>
     </a>
     <div class="hidden lg:flex items-center gap-6 xl:gap-8">
-      <a class="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-primary pb-1 transition-all duration-300 whitespace-nowrap" href="#servicios">Servicios</a>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#servicios">Servicios</a>
       <div class="vertical-divider"></div>
       <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#press-on">Press-on</a>
       <div class="vertical-divider"></div>
       <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#galeria">Galería</a>
       <div class="vertical-divider"></div>
-      <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#citas">Citas</a>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#faq">Preguntas</a>
     </div>
-    <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95">
-      Reservar
-    </button>
+    <div class="flex items-center gap-2">
+      <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-5 md:px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95">
+        Reservar
+      </button>
+      <button id="btn-menu" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false"
+              class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-on-surface" id="btn-menu-icon">menu</span>
+      </button>
+    </div>
+  </div>
+  <!-- Menú móvil desplegable -->
+  <div id="menu-movil" class="hidden lg:hidden border-t border-outline-variant/20 bg-surface/95 backdrop-blur-md">
+    <div class="flex flex-col px-margin-mobile py-3">
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface py-3 border-b border-outline-variant/10" href="#servicios">Servicios</a>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface py-3 border-b border-outline-variant/10" href="#press-on">Press-on</a>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface py-3 border-b border-outline-variant/10" href="#galeria">Galería</a>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface py-3" href="#faq">Preguntas</a>
+    </div>
   </div>
 </nav>
 
 <main class="pt-20">
 
   <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
-  <section class="relative h-[921px] flex items-center justify-center overflow-hidden">
+  <section class="relative h-[88vh] min-h-[560px] max-h-[960px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img class="w-full h-full object-cover"
+      <img class="w-full h-full object-cover" fetchpriority="high"
            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGQgjleRjBIpcUTZTYLOkZe2HPEHAyE54W3CQ6EsiSLo80hOV_-ygKT5jFkGzeeLZr1y72bYVhf3n4QXGeXMTeFjVp_yWZ-4e6OluZ6RRVxtDwrYyfMP9V-GIGN73CnAKhmIlSOVZ28dpT_8WtxYIyzu62jaLf1IaqazQZoUHLSVOcqwyibRiDFK4v6r5qSLx9ACxDerY2u5q-rrdR9hC3KRuQAKucr2H-LIsJWIY52SJHmy-qniCJR8Z88fHJDKfgIZuPiaYRgw"
-           alt="Manos manicuradas sobre seda crema con iluminación etérea"/>
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/60"></div>
+           alt="Manos manicuradas sobre seda crema con iluminación etérea"
+           onerror="this.style.display='none'; this.parentElement.classList.add('brand-gradient')"/>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/70"></div>
     </div>
     <div class="relative z-10 text-center px-margin-mobile">
-      <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-4 block">Fine Art Nail Studio</span>
-      <h1 class="font-display-lg text-[48px] md:text-display-lg leading-tight mb-8 max-w-4xl mx-auto italic">
+      <span class="inline-flex items-center gap-2 glass-card px-5 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-6 brand-ring">Fine Art Nail Studio</span>
+      <h1 class="font-display-lg text-[44px] md:text-display-lg leading-tight mb-5 max-w-4xl mx-auto italic">
         La belleza está en el detalle.
       </h1>
+      <p class="font-body-lg text-body-lg text-on-surface/80 mb-10 max-w-xl mx-auto">
+        Esmaltado permanente, soft gel y press-on diseñados a tu medida.<br class="hidden md:block"/>
+        Agenda tu cita por WhatsApp en menos de un minuto.
+      </p>
       <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface px-10 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:shadow-xl transition-all">
-          Explorar Colección
+        <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface px-10 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary hover:shadow-xl transition-all">
+          Agendar mi Cita
         </button>
-        <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="border border-inverse-surface text-on-surface px-10 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container-low transition-all">
-          Agendar Cita
+        <button onclick="document.getElementById('press-on').scrollIntoView({behavior:'smooth'})" class="glass-card border border-inverse-surface/30 text-on-surface px-10 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container-low transition-all">
+          Ver la Colección
         </button>
+      </div>
+    </div>
+    <a href="#servicios" aria-label="Bajar a servicios" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-on-surface/50 hover:text-primary transition-colors animate-bounce">
+      <span class="material-symbols-outlined text-3xl">keyboard_arrow_down</span>
+    </a>
+  </section>
+
+  <!-- ── SELLOS DE LA CASA ─────────────────────────────────────────────────── -->
+  <section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pt-16 pb-2">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-gutter">
+      <div class="flex flex-col items-center text-center gap-3 p-5">
+        <div class="w-12 h-12 rounded-full brand-gradient flex items-center justify-center brand-ring">
+          <span class="material-symbols-outlined text-on-surface/70">auto_awesome</span>
+        </div>
+        <p class="font-label-sm text-label-sm uppercase tracking-widest font-bold">Diseño de autor</p>
+        <p class="text-[13px] text-secondary leading-relaxed">Cada manicura es una pieza única, pensada para ti.</p>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 p-5">
+        <div class="w-12 h-12 rounded-full brand-gradient flex items-center justify-center brand-ring">
+          <span class="material-symbols-outlined text-on-surface/70">verified</span>
+        </div>
+        <p class="font-label-sm text-label-sm uppercase tracking-widest font-bold">Alta gama</p>
+        <p class="text-[13px] text-secondary leading-relaxed">Pigmentos y geles premium con acabado espejo.</p>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 p-5">
+        <div class="w-12 h-12 rounded-full brand-gradient flex items-center justify-center brand-ring">
+          <span class="material-symbols-outlined text-on-surface/70">schedule</span>
+        </div>
+        <p class="font-label-sm text-label-sm uppercase tracking-widest font-bold">Duración real</p>
+        <p class="text-[13px] text-secondary leading-relaxed">Color impecable por más de 15 días.</p>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 p-5">
+        <div class="w-12 h-12 rounded-full brand-gradient flex items-center justify-center brand-ring">
+          <span class="material-symbols-outlined text-on-surface/70">forum</span>
+        </div>
+        <p class="font-label-sm text-label-sm uppercase tracking-widest font-bold">Agenda express</p>
+        <p class="text-[13px] text-secondary leading-relaxed">Reserva por WhatsApp en menos de 1 minuto.</p>
       </div>
     </div>
   </section>
@@ -519,14 +642,16 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 
       <!-- Card grande — imagen editorial -->
-      <div class="group relative aspect-[4/5] overflow-hidden rounded-xl soft-glow bg-white">
-        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      <div class="group relative aspect-[4/5] overflow-hidden rounded-xl soft-glow bg-white cursor-pointer"
+           onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9dl2xJltqzqs5taQW5A-Pr1bx0jeuV8UDJMBljZlV6BPUpasWpe7v0qItxrr8ZtmvEZ6SSisXcqPFzaV1IZkvMgwm-6-QYCbQsk5tn4fI4jTiPSWHu1ADeCqah0AEMeo_ac2IcgKPcG_my0T6o_IWIV5qVdW5UAS2DHlPkj4WS8wntWd2waJrTcGQGC_296zlccL6vuA_NY787qeOSuFxEg6aHuODwn-1W3TsXWufYXuAEySQYv566U4C5CWMfYc8-cdrKAUI1A"
-             alt="Manicura de diseño con pincel fino y pigmentos de alta gama"/>
+             alt="Manicura de diseño con pincel fino y pigmentos de alta gama"
+             onerror="this.style.display='none'; this.parentElement.classList.add('brand-gradient')"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
           <span class="font-label-sm text-label-sm uppercase tracking-widest mb-2 opacity-80">Signature Art</span>
           <h3 class="font-headline-md text-headline-md mb-4">Diseño</h3>
-          <p class="font-body-md text-body-md mb-6 max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <p class="font-body-md text-body-md mb-6 max-w-md md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
             Ojo de gato · Cromado · Cristalería · Relieves. El detalle que transforma tu manicura en arte.
           </p>
           <div class="flex items-baseline gap-2">
@@ -540,7 +665,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="grid grid-cols-1 gap-gutter">
 
         <!-- SRV-002 — Esmaltado Permanente -->
-        <div class="glass-card p-8 rounded-xl flex flex-col justify-between border border-outline-variant/10 group hover:bg-primary-fixed/5 transition-all">
+        <div class="glass-card p-8 rounded-xl flex flex-col justify-between border border-outline-variant/10 group hover:bg-primary-fixed/5 transition-all cursor-pointer"
+             onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
           <div>
             <div class="flex justify-between items-start mb-6">
               <h3 class="font-headline-md text-headline-md" id="card-srv002-nombre">Cargando…</h3>
@@ -561,7 +687,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <!-- SRV-001 — Soft Gel Extensions -->
-        <div class="glass-card p-8 rounded-xl flex flex-col justify-between border border-outline-variant/10 group hover:bg-primary-fixed/5 transition-all">
+        <div class="glass-card p-8 rounded-xl flex flex-col justify-between border border-outline-variant/10 group hover:bg-primary-fixed/5 transition-all cursor-pointer"
+             onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
           <div>
             <div class="flex justify-between items-start mb-6">
               <h3 class="font-headline-md text-headline-md" id="card-srv001-nombre">Cargando…</h3>
@@ -597,7 +724,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </p>
       </div>
       <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-primary text-white px-8 py-3 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary/90 transition-all flex items-center gap-2">
-        Ver Catálogo <span class="material-symbols-outlined text-sm">shopping_bag</span>
+        Pedir mi Set <span class="material-symbols-outlined text-sm">shopping_bag</span>
       </button>
     </div>
 
@@ -628,7 +755,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="flex items-center gap-4">
           <span class="material-symbols-outlined text-primary">magic_button</span>
           <div>
-            <p class="font-label-sm text-label-sm uppercase font-bold">Cristales Swarovsky</p>
+            <p class="font-label-sm text-label-sm uppercase font-bold">Cristales Swarovski</p>
             <p class="text-[12px] text-secondary">Por unidad o set completo</p>
           </div>
         </div>
@@ -644,25 +771,54 @@ document.addEventListener("DOMContentLoaded", () => {
       <a class="font-label-sm text-label-sm uppercase underline tracking-widest text-primary hover:text-on-surface transition-colors" href="https://instagram.com/defenanails" target="_blank" rel="noopener">Ver Instagram</a>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 px-2">
-      <div class="aspect-square overflow-hidden bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tgngedWph8pR6v-KMU2aYQfKSLuM17esAK_JRPR8fwyVZbAwxrx2YjDQI5nt7dXGuUnr6DIG1vnFZPTt17jDv11C4duhJP0wXFa3gTJFzVJV1_JiWI8xTUTs7NWG69kjkY6x3I_2RQ3KhKetyyYnSQUxsHwk4mMA6_2Md6RQNaJwquEXPhFBSJyvUvvjY3XFzFwx0EN0Ga9_ugX2CX7Rs4O6qDG7Vy6nv5NG4gO_M-Sp6s6nFkwgnJZT7m5LbYVgGaIv7Xdd7Q"
              alt="Diseño de uñas con pigmentos artísticos"/>
       </div>
-      <div class="aspect-square overflow-hidden bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcPwZiAq-Df6wtN_-lB5mL-oXvYV33pNf8v0dJzgGoEZa5kJkW-K2kxIAAl19uhqXoWByFL3QHzq_GScYOzaC_IshRht3DRYJhtOoHUDGCd2PiLKMlbmNhqqd_raqF2G2uVkuZhOzR1ysxwQu39MI_0of9KHJFhk9wQpTkf5GEw7OamtOOE8yiCkhcTCsFjntxKVRry_bVPSxqxFGC9u9k1xP9hNStne96j407TJTe3KKLM0A5FBeuMiNGEFvHKCpMdDvxMg"
              alt="Diseño forest green con flor seca en gel"/>
       </div>
-      <div class="aspect-square overflow-hidden bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbAekcVd87XK-1hJImEDSePKttPHiZk-8q34CVAB7Eu7l41QPp2fpjuJJ4OVCF0C8rWmCzyNxzeuHg6YYEEYe-NBto7Wx2lUtV-IAOHnsOH6w1z5JWxXuPTslk6eZsVLHdQ_KJlM5ukzRB9DyKoPwfzPxtIUsYuc2AI1xQUDUStsP2McndjOZafNOfG3tIpVExyAdM9wTMYJfW6qGlPxzjoo3E9uWtss9tqP8vCyu_KeXSxEeH4RwccM26X_hjcGQEG5-8Yj3QbA"
              alt="Manicura roja clásica con acabado espejo"/>
       </div>
-      <div class="aspect-square overflow-hidden bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHdNXlMLTxYw7WRmxNEoyCgs-UKJnmtsegF7L4Lv8QHtYgdfJmce4l3Sff_jAzZ3_kSurSdxrnkx42nHDARf1LV818uW1gl4f1-AFAOQdYkfUSOIyrONUAmHpCZFXLHH6bimPzShEmZ41DahC9VmlRq-_-2M4CtR-wEgaPZ2XyGvG32tcuDSeCD1YARrYH-cD4aIdLKWkQ8hQnPFsEFG3G1LNRbj8WucHg61coImAvowriHQqA0kLLfywdYbLJy-DjNB3NsvEOEQ"
              alt="Arte minimalista con líneas doradas sobre base nude"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CÓMO FUNCIONA ─────────────────────────────────────────────────────── -->
+  <section class="relative py-section-padding px-margin-mobile md:px-margin-desktop bg-surface-container-low overflow-hidden" id="como-funciona">
+    <div class="absolute -top-20 -right-24 w-80 h-80 brand-gradient rounded-full blur-3xl opacity-25 pointer-events-none"></div>
+    <div class="relative max-w-container-max mx-auto">
+      <div class="text-center mb-16">
+        <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-2 block">Agenda sin fricción</span>
+        <h2 class="font-headline-lg text-headline-lg mb-3">Tu cita en tres pasos.</h2>
+        <div class="brand-line w-32 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-gutter max-w-5xl mx-auto">
+        <div class="text-center">
+          <p class="font-display-lg italic text-[56px] leading-none brand-text mb-4">01</p>
+          <h3 class="font-headline-md text-[22px] mb-3">Elige tus servicios</h3>
+          <p class="font-body-md text-body-md text-secondary">Marca en el formulario lo que quieres hacerte y revisa el total estimado al instante.</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display-lg italic text-[56px] leading-none brand-text mb-4">02</p>
+          <h3 class="font-headline-md text-[22px] mb-3">Envía tu solicitud</h3>
+          <p class="font-body-md text-body-md text-secondary">Se abre WhatsApp con tu mensaje ya escrito: solo presiona enviar.</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display-lg italic text-[56px] leading-none brand-text mb-4">03</p>
+          <h3 class="font-headline-md text-[22px] mb-3">Confirma tu hora</h3>
+          <p class="font-body-md text-body-md text-secondary">Te respondemos en menos de 2 horas con la disponibilidad de la semana.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -686,7 +842,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="text-left space-y-3">
           <label class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Servicios de Interés</label>
           <div id="servicios-checks" class="space-y-2 max-h-56 overflow-y-auto pr-1"></div>
-          <p id="precio-estimado" class="text-sm font-bold text-primary min-h-[20px] pt-1 border-t border-outline-variant/20"></p>
+          <p id="precio-estimado" aria-live="polite" class="text-sm font-bold text-primary min-h-[20px] pt-1 border-t border-outline-variant/20"></p>
         </div>
       </div>
       <button onclick="enviarPorWhatsApp()"
@@ -702,7 +858,64 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </section>
 
+  <!-- ── PREGUNTAS FRECUENTES ──────────────────────────────────────────────── -->
+  <section class="py-section-padding px-margin-mobile md:px-margin-desktop" id="faq">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="font-headline-lg text-headline-lg mb-3">Preguntas Frecuentes</h2>
+        <div class="brand-line w-32 mx-auto"></div>
+      </div>
+      <div class="space-y-0">
+        <details class="faq border-b border-outline-variant/20 py-5">
+          <summary class="flex justify-between items-center gap-4">
+            <span class="font-body-lg text-[17px] font-semibold">¿Cómo agendo una hora?</span>
+            <span class="material-symbols-outlined faq-icon text-primary shrink-0">add</span>
+          </summary>
+          <p class="font-body-md text-body-md text-secondary mt-4 pr-8">Completa el formulario de arriba con tus servicios: se abre WhatsApp con el mensaje listo y solo lo envías. Te respondemos en menos de 2 horas con la disponibilidad de la semana.</p>
+        </details>
+        <details class="faq border-b border-outline-variant/20 py-5">
+          <summary class="flex justify-between items-center gap-4">
+            <span class="font-body-lg text-[17px] font-semibold">Llevo esmaltado de otro salón, ¿pueden retirarlo?</span>
+            <span class="material-symbols-outlined faq-icon text-primary shrink-0">add</span>
+          </summary>
+          <p class="font-body-md text-body-md text-secondary mt-4 pr-8">Sí. El retiro de producto externo cuesta $4.500 (permanente) o $5.500 (soft gel), con protocolo seguro que no daña tu uña natural. Si el trabajo anterior es nuestro, el retiro interno es más conveniente: $2.500 o $3.500 al reservar tu nuevo servicio.</p>
+        </details>
+        <details class="faq border-b border-outline-variant/20 py-5">
+          <summary class="flex justify-between items-center gap-4">
+            <span class="font-body-lg text-[17px] font-semibold">¿Cuánto dura el esmaltado permanente?</span>
+            <span class="material-symbols-outlined faq-icon text-primary shrink-0">add</span>
+          </summary>
+          <p class="font-body-md text-body-md text-secondary mt-4 pr-8">Más de 15 días con acabado espejo. Además incluye nivelación para una superficie uniforme y duradera.</p>
+        </details>
+        <details class="faq border-b border-outline-variant/20 py-5">
+          <summary class="flex justify-between items-center gap-4">
+            <span class="font-body-lg text-[17px] font-semibold">¿Los press-on son reutilizables?</span>
+            <span class="material-symbols-outlined faq-icon text-primary shrink-0">add</span>
+          </summary>
+          <p class="font-body-md text-body-md text-secondary mt-4 pr-8">Sí: son sets de alta durabilidad diseñados a la medida de tus uñas, y se aplican en unos 5 minutos. Puedes elegir un diseño de la colección o pedir uno personalizado.</p>
+        </details>
+        <details class="faq py-5">
+          <summary class="flex justify-between items-center gap-4">
+            <span class="font-body-lg text-[17px] font-semibold">¿Puedo pedir un diseño personalizado?</span>
+            <span class="material-symbols-outlined faq-icon text-primary shrink-0">add</span>
+          </summary>
+          <p class="font-body-md text-body-md text-secondary mt-4 pr-8">¡Es nuestra especialidad! Ojo de gato, cromado, cristalería y relieves desde $2.000. Trae tu referencia o cuéntanos tu idea y la convertimos en arte.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/56977562949?text=Hola!%20%F0%9F%92%85%20Vengo%20de%20la%20web%20de%20deFe%C3%B1aNails%20y%20quiero%20hacer%20una%20consulta."
+   target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"
+   class="fixed bottom-6 right-6 z-[60] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-transform">
+  <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.006-1.374l-.36-.214-3.706.972.989-3.614-.234-.371A9.79 9.79 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+  </svg>
+</a>
 
 <script>
 function enviarPorWhatsApp() {
@@ -740,39 +953,81 @@ function enviarPorWhatsApp() {
     <img src="logo-mark.png" alt="deFeña Nails Fine Art" class="w-24 h-24 rounded-full object-cover mb-6 brand-ring"/>
     <div class="font-headline-md text-headline-md text-on-surface italic mb-2">deFeñaNails Fine Art</div>
     <p class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-8">Soft Minimalism · Manicura de Autor</p>
-    <div class="flex flex-wrap justify-center gap-8 mb-12">
-      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#">Privacidad</a>
-      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#">Términos</a>
-      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#">Contacto</a>
-      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="https://instagram.com/defenanails" target="_blank" rel="noopener">Instagram</a>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+      <a href="https://wa.me/56977562949?text=Hola!%20%F0%9F%92%85%20Vengo%20de%20la%20web%20de%20deFe%C3%B1aNails%20y%20quiero%20hacer%20una%20consulta."
+         target="_blank" rel="noopener"
+         class="flex items-center gap-2 border border-outline-variant/40 rounded-full px-6 py-3 font-label-sm text-label-sm uppercase tracking-widest text-on-surface hover:border-primary hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-[18px]">call</span> +56 9 7756 2949
+      </a>
+      <a href="https://instagram.com/defenanails" target="_blank" rel="noopener"
+         class="flex items-center gap-2 border border-outline-variant/40 rounded-full px-6 py-3 font-label-sm text-label-sm uppercase tracking-widest text-on-surface hover:border-primary hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-[18px]">photo_camera</span> @defenanails
+      </a>
     </div>
-    <p class="font-body-md text-body-md text-secondary opacity-60">© 2024 deFeñaNails Fine Art. Todos los derechos reservados.</p>
+    <div class="flex flex-wrap justify-center gap-8 mb-12">
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#servicios">Servicios</a>
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#press-on">Press-on</a>
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#galeria">Galería</a>
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#citas">Agendar</a>
+    </div>
+    <p class="font-body-md text-body-md text-secondary opacity-60">© 2026 deFeñaNails Fine Art. Todos los derechos reservados.</p>
+    <p class="text-[11px] text-secondary/50 mt-2 uppercase tracking-widest">Atención con cita previa</p>
   </div>
 </footer>
 
 <script>
-  // Smooth scroll
+  // ── Menú móvil ─────────────────────────────────────────────────────────────
+  function toggleMenu() {
+    const menu = document.getElementById('menu-movil');
+    const btn  = document.getElementById('btn-menu');
+    const icon = document.getElementById('btn-menu-icon');
+    const abierto = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    icon.textContent = abierto ? 'menu' : 'close';
+    btn.setAttribute('aria-expanded', String(!abierto));
+    btn.setAttribute('aria-label', abierto ? 'Abrir menú' : 'Cerrar menú');
+  }
+  function cerrarMenu() {
+    const menu = document.getElementById('menu-movil');
+    if (menu && !menu.classList.contains('hidden')) toggleMenu();
+  }
+
+  // ── Smooth scroll (con guard: ignora href="#" y anclas inexistentes) ───────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Reveal on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-10');
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        cerrarMenu();
       }
     });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('section').forEach(section => {
-    section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-    observer.observe(section);
   });
+
+  // ── Fecha mínima del formulario: hoy ────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const fecha = document.getElementById('input-fecha');
+    if (fecha) fecha.min = new Date().toISOString().split('T')[0];
+  });
+
+  // ── Reveal on scroll (desactivado si el usuario prefiere menos movimiento) ──
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+      observer.observe(section);
+    });
+  }
 </script>
 
 </body>
