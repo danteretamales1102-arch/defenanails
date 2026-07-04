@@ -13,17 +13,18 @@
 <meta property="og:title" content="deFeñaNails Fine Art — Manicura de Autor"/>
 <meta property="og:description" content="Esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda tu cita por WhatsApp."/>
 <meta property="og:url" content="https://danteretamales1102-arch.github.io/defenanails/"/>
-<meta property="og:image" content="https://danteretamales1102-arch.github.io/defenanails/logo.png"/>
-<meta name="twitter:card" content="summary"/>
+<meta property="og:image" content="https://danteretamales1102-arch.github.io/defenanails/img/hero.jpeg"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="deFeñaNails Fine Art — Manicura de Autor"/>
 <meta name="twitter:description" content="Esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda por WhatsApp."/>
-<meta name="twitter:image" content="https://danteretamales1102-arch.github.io/defenanails/logo.png"/>
+<meta name="twitter:image" content="https://danteretamales1102-arch.github.io/defenanails/img/hero.jpeg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="favicon.png" rel="icon" type="image/png"/>
+<link rel="preload" as="image" href="img/hero.jpeg" fetchpriority="high"/>
 <link href="logo-mark.png" rel="apple-touch-icon"/>
 <title>deFeñaNails Fine Art — Manicura de Autor y Press-on Personalizados</title>
 <style>
@@ -85,7 +86,7 @@
   "@type": "NailSalon",
   "name": "deFeñaNails Fine Art",
   "url": "https://danteretamales1102-arch.github.io/defenanails/",
-  "image": "https://danteretamales1102-arch.github.io/defenanails/logo.png",
+  "image": "https://danteretamales1102-arch.github.io/defenanails/img/hero.jpeg",
   "telephone": "+56977562949",
   "priceRange": "$$",
   "sameAs": ["https://www.instagram.com/defenanails"]
@@ -362,7 +363,7 @@ const PRESS_ON_COLLECTION = [
     coleccion: "Diseño a Medida",
     precio:    35000,
     desde:     true,
-    imagen_url: "img/press-on-set.png",
+    imagen_url: "img/press-on-set.jpeg",
     imagen_alt: "Set de press-on de autor con diseños variados: relieve, cromado, ojo de gato, polka dots y francesas.",
   },
   {
@@ -371,7 +372,7 @@ const PRESS_ON_COLLECTION = [
     coleccion: "Listo para Regalo",
     precio:    35000,
     desde:     true,
-    imagen_url: "img/press-on-estuche.png",
+    imagen_url: "img/press-on-estuche.jpeg",
     imagen_alt: "Set de press-on personalizado presentado en su estuche transparente.",
   },
   {
@@ -380,7 +381,7 @@ const PRESS_ON_COLLECTION = [
     coleccion: "Edición de Marca",
     precio:    35000,
     desde:     true,
-    imagen_url: "img/press-on-logo.png",
+    imagen_url: "img/press-on-logo.jpeg",
     imagen_alt: "Estuche de press-on cerrado con el sticker holográfico de deFeñaNails.",
   },
 ];
@@ -532,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
     <a href="#" class="flex items-center gap-3 group">
       <img src="logo-mark.png" alt="deFeña Nails Fine Art" class="w-11 h-11 rounded-full object-cover brand-ring transition-transform duration-300 group-hover:scale-105"/>
-      <span class="font-headline-md text-headline-md italic text-on-surface tracking-tighter">deFeñaNails</span>
+      <span class="font-headline-md italic text-on-surface tracking-tighter text-[19px] leading-7 sm:text-headline-md whitespace-nowrap">deFeñaNails</span>
     </a>
     <div class="hidden lg:flex items-center gap-6 xl:gap-8">
       <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#servicios">Servicios</a>
@@ -544,7 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#faq">Preguntas</a>
     </div>
     <div class="flex items-center gap-2">
-      <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-5 md:px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95">
+      <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-3.5 sm:px-5 md:px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95 shrink-0">
         Reservar
       </button>
       <button id="btn-menu" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false"
@@ -576,6 +577,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/70"></div>
     </div>
     <div class="relative z-10 text-center px-margin-mobile">
+      <!-- Halo de luz sutil tras el texto: mejora la legibilidad sin tapar la foto -->
+      <div class="absolute -inset-x-16 -inset-y-10 -z-10 pointer-events-none" aria-hidden="true"
+           style="background: radial-gradient(ellipse 62% 58% at 50% 45%, rgba(250,249,246,0.6) 0%, rgba(250,249,246,0.28) 48%, rgba(250,249,246,0) 75%);"></div>
       <span class="inline-flex items-center gap-2 glass-card px-5 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-6 brand-ring">Fine Art Nail Studio</span>
       <h1 class="font-display-lg text-[44px] md:text-display-lg leading-tight mb-5 max-w-4xl mx-auto italic">
         La belleza está en el detalle.
@@ -771,67 +775,67 @@ document.addEventListener("DOMContentLoaded", () => {
       <a class="font-label-sm text-label-sm uppercase underline tracking-widest text-primary hover:text-on-surface transition-colors" href="https://instagram.com/defenanails" target="_blank" rel="noopener">Ver Instagram</a>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 px-2">
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-01.jpeg" alt="Soft gel con diseño 3D, cristalería, francesa y difuminado"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-02.jpeg" alt="Soft gel 3D con difuminado, francesas, cristalería y cromado"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-03.jpeg" alt="Soft gel con francesa, polka dots y cristalería en relieve 3D"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-04.jpeg" alt="Soft gel cromado con difuminado y relieve de autor"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-05.jpeg" alt="Soft gel cromado con relieve de autor"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-06.jpeg" alt="Soft gel difuminado con francesa, cromado y cristalería"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-07.jpeg" alt="Soft gel con efecto ojo de gato"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-08.jpeg" alt="Soft gel ojo de gato con francesa"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-09.jpeg" alt="Soft gel ojo de gato con relieve"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-10.jpeg" alt="Soft gel con relieve y polka dots de autor"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-11.jpeg" alt="Manicura permanente azul marino con acabado espejo"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-12.jpeg" alt="Esmaltado permanente nivelado con efecto ojo de gato"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-13.jpeg" alt="Esmaltado permanente con relieve, difuminado y cromado"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-14.jpeg" alt="Permanente con francesas, efecto carey y cristalería"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-15.jpeg" alt="Esmaltado permanente con diseño en relieve"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
         <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-16.jpeg" alt="Esmaltado permanente con relieve"/>
       </div>
