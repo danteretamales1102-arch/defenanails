@@ -568,8 +568,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
   <section class="relative h-[88vh] min-h-[560px] max-h-[960px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img class="w-full h-full object-cover" fetchpriority="high"
+    <div class="absolute inset-0 z-0 brand-gradient">
+      <!-- Relleno difuminado a pantalla completa (evita bordes vacíos en escritorio) -->
+      <img class="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-50" aria-hidden="true" src="img/hero.jpeg" alt=""/>
+      <!-- Imagen principal: en escritorio se muestra completa (menos zoom, anillo visible) -->
+      <img class="relative w-full h-full object-cover md:object-contain object-center" fetchpriority="high"
            src="img/hero.jpeg"
            alt="Dos manos con manicura French clásica de acabado impecable"
            onerror="this.style.display='none'; this.parentElement.classList.add('brand-gradient')"/>
