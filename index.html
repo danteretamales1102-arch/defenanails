@@ -13,18 +13,17 @@
 <meta property="og:title" content="deFeñaNails Fine Art — Manicura de Autor"/>
 <meta property="og:description" content="Esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda tu cita por WhatsApp."/>
 <meta property="og:url" content="https://danteretamales1102-arch.github.io/defenanails/"/>
-<meta property="og:image" content="https://danteretamales1102-arch.github.io/defenanails/img/hero.jpeg"/>
-<meta name="twitter:card" content="summary_large_image"/>
+<meta property="og:image" content="https://danteretamales1102-arch.github.io/defenanails/logo.png"/>
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="deFeñaNails Fine Art — Manicura de Autor"/>
 <meta name="twitter:description" content="Esmaltado permanente, soft gel, diseños de autor y press-on personalizados. Agenda por WhatsApp."/>
-<meta name="twitter:image" content="https://danteretamales1102-arch.github.io/defenanails/img/hero.jpeg"/>
+<meta name="twitter:image" content="https://danteretamales1102-arch.github.io/defenanails/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="favicon.png" rel="icon" type="image/png"/>
-<link rel="preload" as="image" href="img/hero.jpeg" fetchpriority="high"/>
 <link href="logo-mark.png" rel="apple-touch-icon"/>
 <title>deFeñaNails Fine Art — Manicura de Autor y Press-on Personalizados</title>
 <style>
@@ -78,14 +77,6 @@
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
-
-  /* ── Lightbox / ficha de imagen ─────────────────────────────────────────── */
-  #lightbox { display: none; }
-  #lightbox.abierto { display: flex; }
-  #lightbox .lb-backdrop { animation: lbFade .3s ease both; }
-  #lightbox .lb-card { animation: lbCard .32s cubic-bezier(.2,.8,.2,1) both; }
-  @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes lbCard { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
 </style>
 <!-- Datos estructurados: ficha de negocio local para Google -->
 <script type="application/ld+json">
@@ -94,7 +85,7 @@
   "@type": "NailSalon",
   "name": "deFeñaNails Fine Art",
   "url": "https://danteretamales1102-arch.github.io/defenanails/",
-  "image": "https://danteretamales1102-arch.github.io/defenanails/img/hero.jpeg",
+  "image": "https://danteretamales1102-arch.github.io/defenanails/logo.png",
   "telephone": "+56977562949",
   "priceRange": "$$",
   "sameAs": ["https://www.instagram.com/defenanails"]
@@ -367,30 +358,33 @@ const SERVICIOS_RETIRO = [
 const PRESS_ON_COLLECTION = [
   {
     id:        "PO-001",
-    nombre:    "Set Personalizado",
-    coleccion: "Diseño a Medida",
+    nombre:    "Lavender Muse",
+    coleccion: "Custom Shape Set",
     precio:    35000,
     desde:     true,
-    imagen_url: "img/press-on-set.jpeg",
-    imagen_alt: "Set de press-on de autor con diseños variados: relieve, cromado, ojo de gato, polka dots y francesas.",
+    imagen_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuB2HgwFWQSLH5YLEutmWYAvKdy8ldHyU7huiXXy6znNqFeuYBdU2LF5PJSeRfEtihy2uec_p4R9oarazorKZGQwJm2mva_Nle52IZiqN44PLfnwsbLUIFt2zb4rnNPGkxLvgmB8dA0anzFK3FwECteKLjYqn3b9ygfa0ePQAUFfpbkCGojbEMX6NJ2GgfGL8t5ASr8G-yPmEi-DwrEe98719C-AyNblOooryFnFjPPlCuyE0M6_4TAAuD-K91nKVF_fDf8IgpoJXQ",
+    imagen_alt: "Press-on mate lavanda con detalles dorados 3D.",
+    ficha:     "Acabado mate en tono lavanda con apliques dorados 3D esculpidos a mano. Romántico y sofisticado, ideal para brillar sin perder elegancia. Set reutilizable diseñado a la medida de tus uñas.",
   },
   {
     id:        "PO-002",
-    nombre:    "Set en Estuche",
-    coleccion: "Listo para Regalo",
-    precio:    35000,
+    nombre:    "Milky Way",
+    coleccion: "Bridal Collection",
+    precio:    32000,
     desde:     true,
-    imagen_url: "img/press-on-estuche.jpeg",
-    imagen_alt: "Set de press-on personalizado presentado en su estuche transparente.",
+    imagen_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDZxELq8a97BI3g1kMCKDHP-PHhTHrTQ3l9VCPkUXhHOSYOjxV-n48GvEle6GClA6xsicYzgS2Pa3UfRijQ4ia0f3qBa8oShoVv1NCCFtjNbBvmI9JRcJwRr7oKhOPlcLWrcoQUWepgEw8Mqk4NpdEKu18IROWUa-A05gBP-1B9Oj6hr-H0umuShiOP1Z_KLKLYq4l25Q-6PclSGS4sObW7bUd02Fo4JiSYicKjqi5GkM5cftWopJNqyTJ0Y-FK0fS3YAiCUw",
+    imagen_alt: "Press-on blanco lechoso con cristal iridiscente.",
+    ficha:     "Base blanco lechoso translúcido con cristales iridiscentes que atrapan la luz. Pensado para novias y momentos donde cada detalle importa. Calidad profesional lista en 5 minutos.",
   },
   {
     id:        "PO-003",
-    nombre:    "Estuche deFeñaNails",
-    coleccion: "Edición de Marca",
-    precio:    35000,
+    nombre:    "Midnight Onyx",
+    coleccion: "Edgy Collection",
+    precio:    38000,
     desde:     true,
-    imagen_url: "img/press-on-logo.jpeg",
-    imagen_alt: "Estuche de press-on cerrado con el sticker holográfico de deFeñaNails.",
+    imagen_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCGsQ0hE87ETFqnTjkWCnFl_NLqHM5hnymuinS4SMj86WAjYEJEJggQxisCz3-pXm4ZesKEFNNq7k_1gMHe9QQwgycmHbhXEl5-BNvB6eJSJDME9bNBFaKOCkR-Xz7aPwD40dkOCexGgi8AYjfoa1JwmaaKfz4M15aKli94VTR5Ys6YdvIlyzQ7eMeYHkFSsdfov5TLoZ0r8rq8_iWnoyaDc3X8GQUN3gRYZJfVmEeVNMV9e2avmfpiJcDfuo8rCFZwgS5zgEw",
+    imagen_alt: "Press-on negro brillante con French plateado.",
+    ficha:     "Negro espejo de alto brillo con French plateado metálico. Una declaración audaz y moderna para quienes se atreven a destacar. Set de alta durabilidad, reutilizable.",
   },
 ];
 
@@ -475,12 +469,14 @@ function renderPressOn() {
   container.innerHTML = PRESS_ON_COLLECTION.map(p => `
     <div class="min-w-[280px] md:min-w-[400px] snap-center">
       <div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[3/4] bg-surface-container"
-           onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
-        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in zoomable"
+           data-lb data-src="${p.imagen_url}" data-eyebrow="${p.coleccion}" data-title="${p.nombre}" data-desc="${p.ficha}" data-price="${precioLabel(p)}" data-cta="Pedir mi Set">
+        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
              loading="lazy" decoding="async"
-             data-titulo="Press-on — ${p.nombre}" data-desc="${p.coleccion}. ${p.imagen_alt}"
              src="${p.imagen_url}" alt="${p.imagen_alt}"
              onerror="pressOnFallback(this)"/>
+        <span class="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full glass-card opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="material-symbols-outlined text-primary text-[20px]">zoom_in</span>
+        </span>
         <div class="absolute bottom-4 left-4 right-4">
           <div class="glass-card p-4 rounded-lg flex justify-between items-center gap-3 transition-transform duration-300 group-hover:-translate-y-1">
             <div>
@@ -542,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
     <a href="#" class="flex items-center gap-3 group">
       <img src="logo-mark.png" alt="deFeña Nails Fine Art" class="w-11 h-11 rounded-full object-cover brand-ring transition-transform duration-300 group-hover:scale-105"/>
-      <span class="font-headline-md italic text-on-surface tracking-tighter text-[19px] leading-7 sm:text-headline-md whitespace-nowrap">deFeñaNails</span>
+      <span class="font-headline-md text-headline-md italic text-on-surface tracking-tighter">deFeñaNails</span>
     </a>
     <div class="hidden lg:flex items-center gap-6 xl:gap-8">
       <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#servicios">Servicios</a>
@@ -554,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#faq">Preguntas</a>
     </div>
     <div class="flex items-center gap-2">
-      <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-3.5 sm:px-5 md:px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95 shrink-0">
+      <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-5 md:px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95">
         Reservar
       </button>
       <button id="btn-menu" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false"
@@ -580,15 +576,12 @@ document.addEventListener("DOMContentLoaded", () => {
   <section class="relative h-[88vh] min-h-[560px] max-h-[960px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img class="w-full h-full object-cover" fetchpriority="high"
-           src="img/hero.jpeg"
-           alt="Dos manos con manicura French clásica de acabado impecable"
+           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGQgjleRjBIpcUTZTYLOkZe2HPEHAyE54W3CQ6EsiSLo80hOV_-ygKT5jFkGzeeLZr1y72bYVhf3n4QXGeXMTeFjVp_yWZ-4e6OluZ6RRVxtDwrYyfMP9V-GIGN73CnAKhmIlSOVZ28dpT_8WtxYIyzu62jaLf1IaqazQZoUHLSVOcqwyibRiDFK4v6r5qSLx9ACxDerY2u5q-rrdR9hC3KRuQAKucr2H-LIsJWIY52SJHmy-qniCJR8Z88fHJDKfgIZuPiaYRgw"
+           alt="Manos manicuradas sobre seda crema con iluminación etérea"
            onerror="this.style.display='none'; this.parentElement.classList.add('brand-gradient')"/>
       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/70"></div>
     </div>
     <div class="relative z-10 text-center px-margin-mobile">
-      <!-- Halo de luz sutil tras el texto: mejora la legibilidad sin tapar la foto -->
-      <div class="absolute -inset-x-16 -inset-y-10 -z-10 pointer-events-none" aria-hidden="true"
-           style="background: radial-gradient(ellipse 62% 58% at 50% 45%, rgba(250,249,246,0.6) 0%, rgba(250,249,246,0.28) 48%, rgba(250,249,246,0) 75%);"></div>
       <span class="inline-flex items-center gap-2 glass-card px-5 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-6 brand-ring">Fine Art Nail Studio</span>
       <h1 class="font-display-lg text-[44px] md:text-display-lg leading-tight mb-5 max-w-4xl mx-auto italic">
         La belleza está en el detalle.
@@ -656,11 +649,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <!-- Card grande — imagen editorial -->
       <div class="group relative aspect-[4/5] overflow-hidden rounded-xl soft-glow bg-white cursor-pointer"
-           onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
-        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-zoom-in zoomable" loading="lazy" decoding="async"
-             data-titulo="Diseño de Autor · Soft Gel"
-             src="img/diseno-destacado.jpeg"
-             alt="Diseño de autor burdeos con flores 3D en relieve, difuminado y cristalería"
+           data-lb data-eyebrow="Signature Art" data-title="Diseño de Autor"
+           data-desc="Ojo de gato, cromado, cristalería y relieves. El detalle que transforma tu manicura en arte, trabajado a mano con pigmentos y técnicas de alta gama. Cada diseño es único y se crea pensando en ti."
+           data-price="Desde $2.000" data-cta="Agendar mi Cita">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9dl2xJltqzqs5taQW5A-Pr1bx0jeuV8UDJMBljZlV6BPUpasWpe7v0qItxrr8ZtmvEZ6SSisXcqPFzaV1IZkvMgwm-6-QYCbQsk5tn4fI4jTiPSWHu1ADeCqah0AEMeo_ac2IcgKPcG_my0T6o_IWIV5qVdW5UAS2DHlPkj4WS8wntWd2waJrTcGQGC_296zlccL6vuA_NY787qeOSuFxEg6aHuODwn-1W3TsXWufYXuAEySQYv566U4C5CWMfYc8-cdrKAUI1A"
+             alt="Manicura de diseño con pincel fino y pigmentos de alta gama"
              onerror="this.style.display='none'; this.parentElement.classList.add('brand-gradient')"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
           <span class="font-label-sm text-label-sm uppercase tracking-widest mb-2 opacity-80">Signature Art</span>
@@ -785,69 +779,29 @@ document.addEventListener("DOMContentLoaded", () => {
       <a class="font-label-sm text-label-sm uppercase underline tracking-widest text-primary hover:text-on-surface transition-colors" href="https://instagram.com/defenanails" target="_blank" rel="noopener">Ver Instagram</a>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 px-2">
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-01.jpeg" alt="Soft gel con diseño 3D, cristalería, francesa y difuminado"/>
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tgngedWph8pR6v-KMU2aYQfKSLuM17esAK_JRPR8fwyVZbAwxrx2YjDQI5nt7dXGuUnr6DIG1vnFZPTt17jDv11C4duhJP0wXFa3gTJFzVJV1_JiWI8xTUTs7NWG69kjkY6x3I_2RQ3KhKetyyYnSQUxsHwk4mMA6_2Md6RQNaJwquEXPhFBSJyvUvvjY3XFzFwx0EN0Ga9_ugX2CX7Rs4O6qDG7Vy6nv5NG4gO_M-Sp6s6nFkwgnJZT7m5LbYVgGaIv7Xdd7Q"
+             alt="Diseño de uñas con pigmentos artísticos"
+             data-lb data-eyebrow="Galería · Nail Art" data-title="Arte Pigmentado" data-desc="Diseño creado a mano con pigmentos de alta gama y pincel fino. Cada trazo se compone al momento para lograr una pieza irrepetible." data-cta="Quiero un diseño así"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-02.jpeg" alt="Soft gel 3D con difuminado, francesas, cristalería y cromado"/>
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcPwZiAq-Df6wtN_-lB5mL-oXvYV33pNf8v0dJzgGoEZa5kJkW-K2kxIAAl19uhqXoWByFL3QHzq_GScYOzaC_IshRht3DRYJhtOoHUDGCd2PiLKMlbmNhqqd_raqF2G2uVkuZhOzR1ysxwQu39MI_0of9KHJFhk9wQpTkf5GEw7OamtOOE8yiCkhcTCsFjntxKVRry_bVPSxqxFGC9u9k1xP9hNStne96j407TJTe3KKLM0A5FBeuMiNGEFvHKCpMdDvxMg"
+             alt="Diseño forest green con flor seca en gel"
+             data-lb data-eyebrow="Galería · Botánico" data-title="Botánico en Gel" data-desc="Flores secas naturales encapsuladas en gel sobre una base forest green. Naturaleza real preservada en tus manos, con un acabado delicado y duradero." data-cta="Quiero un diseño así"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-03.jpeg" alt="Soft gel con francesa, polka dots y cristalería en relieve 3D"/>
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbAekcVd87XK-1hJImEDSePKttPHiZk-8q34CVAB7Eu7l41QPp2fpjuJJ4OVCF0C8rWmCzyNxzeuHg6YYEEYe-NBto7Wx2lUtV-IAOHnsOH6w1z5JWxXuPTslk6eZsVLHdQ_KJlM5ukzRB9DyKoPwfzPxtIUsYuc2AI1xQUDUStsP2McndjOZafNOfG3tIpVExyAdM9wTMYJfW6qGlPxzjoo3E9uWtss9tqP8vCyu_KeXSxEeH4RwccM26X_hjcGQEG5-8Yj3QbA"
+             alt="Manicura roja clásica con acabado espejo"
+             data-lb data-eyebrow="Galería · Clásico" data-title="Rojo Espejo" data-desc="Manicura roja clásica con acabado espejo de larga duración. Elegancia atemporal y brillo impecable por más de 15 días." data-cta="Quiero un diseño así"/>
       </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-04.jpeg" alt="Soft gel cromado con difuminado y relieve de autor"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-05.jpeg" alt="Soft gel cromado con relieve de autor"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-06.jpeg" alt="Soft gel difuminado con francesa, cromado y cristalería"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-07.jpeg" alt="Soft gel con efecto ojo de gato"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-08.jpeg" alt="Soft gel ojo de gato con francesa"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-09.jpeg" alt="Soft gel ojo de gato con relieve"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-10.jpeg" alt="Soft gel con relieve y polka dots de autor"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-11.jpeg" alt="Manicura permanente azul marino con acabado espejo"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-12.jpeg" alt="Esmaltado permanente nivelado con efecto ojo de gato"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-13.jpeg" alt="Esmaltado permanente con relieve, difuminado y cromado"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-14.jpeg" alt="Permanente con francesas, efecto carey y cristalería"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-15.jpeg" alt="Esmaltado permanente con diseño en relieve"/>
-      </div>
-      <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
-             src="img/galeria-16.jpeg" alt="Esmaltado permanente con relieve"/>
+      <div class="gal-tile aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHdNXlMLTxYw7WRmxNEoyCgs-UKJnmtsegF7L4Lv8QHtYgdfJmce4l3Sff_jAzZ3_kSurSdxrnkx42nHDARf1LV818uW1gl4f1-AFAOQdYkfUSOIyrONUAmHpCZFXLHH6bimPzShEmZ41DahC9VmlRq-_-2M4CtR-wEgaPZ2XyGvG32tcuDSeCD1YARrYH-cD4aIdLKWkQ8hQnPFsEFG3G1LNRbj8WucHg61coImAvowriHQqA0kLLfywdYbLJy-DjNB3NsvEOEQ"
+             alt="Arte minimalista con líneas doradas sobre base nude"
+             data-lb data-eyebrow="Galería · Minimal" data-title="Líneas Doradas" data-desc="Arte minimalista con finas líneas doradas sobre base nude. Sutil, luminoso y perfecto para un look sofisticado del día a día." data-cta="Quiero un diseño así"/>
       </div>
     </div>
   </section>
@@ -975,6 +929,37 @@ document.addEventListener("DOMContentLoaded", () => {
   </svg>
 </a>
 
+<!-- ══════════════════════════════════════════════════════════════════════════
+     LIGHTBOX / FICHA DE IMAGEN
+     ══════════════════════════════════════════════════════════════════════════ -->
+<div id="lightbox" class="fixed inset-0 z-[90] hidden items-center justify-center p-4 md:p-8"
+     role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeLightbox()"></div>
+  <div class="relative w-full max-w-5xl max-h-[92vh] bg-surface rounded-2xl overflow-hidden brand-glow flex flex-col md:grid md:grid-cols-2">
+    <div class="brand-gradient h-1.5 w-full absolute top-0 inset-x-0 z-10"></div>
+    <button onclick="closeLightbox()" aria-label="Cerrar ficha"
+            class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur hover:bg-surface-container transition-colors">
+      <span class="material-symbols-outlined text-on-surface">close</span>
+    </button>
+    <!-- Imagen -->
+    <div class="relative bg-surface-container-low md:h-full min-h-[220px] flex items-center justify-center overflow-hidden">
+      <img id="lb-img" src="" alt="" class="w-full h-56 sm:h-72 md:h-full object-cover"/>
+    </div>
+    <!-- Ficha -->
+    <div class="flex flex-col justify-center p-8 md:p-10 overflow-y-auto">
+      <span id="lb-eyebrow" class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-3"></span>
+      <h3 id="lb-title" class="font-headline-md text-headline-md italic mb-4 text-on-surface"></h3>
+      <div class="brand-line w-16 mb-5"></div>
+      <p id="lb-desc" class="font-body-md text-body-md text-secondary mb-6 leading-relaxed"></p>
+      <p id="lb-price" class="text-xl font-bold text-primary mb-8"></p>
+      <button id="lb-cta"
+              class="bg-inverse-surface text-surface px-8 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all self-start">
+        Agendar mi Cita
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
 function enviarPorWhatsApp() {
   const nombre  = document.getElementById("input-nombre").value.trim();
@@ -1070,6 +1055,53 @@ function enviarPorWhatsApp() {
     if (fecha) fecha.min = new Date().toISOString().split('T')[0];
   });
 
+  // ── Lightbox / ficha de imagen ──────────────────────────────────────────────
+  function openLightbox(o) {
+    const img = document.getElementById('lb-img');
+    img.style.display = '';
+    img.parentElement.classList.remove('brand-gradient');
+    img.onerror = function () { this.style.display = 'none'; this.parentElement.classList.add('brand-gradient'); };
+    img.src = o.src || '';
+    img.alt = o.alt || o.title || '';
+    document.getElementById('lb-eyebrow').textContent = o.eyebrow || '';
+    document.getElementById('lb-title').textContent   = o.title   || '';
+    document.getElementById('lb-desc').textContent    = o.desc    || '';
+    const priceEl = document.getElementById('lb-price');
+    priceEl.textContent = o.price || '';
+    priceEl.style.display = o.price ? '' : 'none';
+    document.getElementById('lb-cta').textContent = o.cta || 'Agendar mi Cita';
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('hidden'); lb.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.add('hidden'); lb.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+  // CTA de la ficha → ir a agendar
+  document.getElementById('lb-cta').addEventListener('click', () => {
+    closeLightbox();
+    document.getElementById('citas').scrollIntoView({ behavior: 'smooth' });
+  });
+  // Abrir al clickear cualquier elemento con data-lb (delegación → sirve para contenido dinámico)
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-lb]');
+    if (!el) return;
+    const img = el.matches('img') ? el : el.querySelector('img');
+    openLightbox({
+      src:     el.dataset.src || (img && img.currentSrc) || (img && img.src),
+      alt:     el.dataset.title,
+      eyebrow: el.dataset.eyebrow,
+      title:   el.dataset.title,
+      desc:    el.dataset.desc,
+      price:   el.dataset.price,
+      cta:     el.dataset.cta
+    });
+  });
+  // Cerrar con Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
   // ── Reveal on scroll (desactivado si el usuario prefiere menos movimiento) ──
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const observer = new IntersectionObserver((entries) => {
@@ -1086,75 +1118,6 @@ function enviarPorWhatsApp() {
       observer.observe(section);
     });
   }
-</script>
-
-<!-- ── Lightbox: ficha de imagen a pantalla completa ─────────────────────── -->
-<div id="lightbox" class="fixed inset-0 z-[80] items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lb-titulo">
-  <div class="lb-backdrop absolute inset-0 bg-inverse-surface/70 backdrop-blur-sm" onclick="cerrarLightbox()"></div>
-  <div class="lb-card relative brand-gradient p-[3px] rounded-3xl brand-glow w-full max-w-[440px] max-h-[92vh]">
-    <div class="bg-surface rounded-[21px] overflow-hidden flex flex-col max-h-[calc(92vh-6px)]">
-      <div class="bg-surface-container flex items-center justify-center">
-        <img id="lb-img" class="w-full max-h-[50vh] object-contain" src="" alt=""/>
-      </div>
-      <div class="p-5 sm:p-6 overflow-y-auto">
-        <div class="brand-line w-14 mb-3"></div>
-        <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold block mb-1.5">deFeñaNails · Fine Art</span>
-        <h3 id="lb-titulo" class="font-headline-md text-[22px] leading-snug mb-1.5"></h3>
-        <p id="lb-desc" class="font-body-md text-[15px] leading-relaxed text-secondary"></p>
-      </div>
-    </div>
-    <button onclick="cerrarLightbox()" aria-label="Cerrar" class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-surface text-on-surface brand-ring flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg">
-      <span class="material-symbols-outlined text-[20px]">close</span>
-    </button>
-  </div>
-</div>
-
-<script>
-  (function () {
-    const lb     = document.getElementById("lightbox");
-    const lbImg  = document.getElementById("lb-img");
-    const lbTit  = document.getElementById("lb-titulo");
-    const lbDesc = document.getElementById("lb-desc");
-
-    function tituloDe(img) {
-      if (img.dataset.titulo) return img.dataset.titulo;
-      const a = (img.getAttribute("alt") || "").toLowerCase();
-      const s = (img.getAttribute("src") || "").toLowerCase();
-      if (s.includes("press-on"))                         return "Press-on Personalizado";
-      if (a.includes("french"))                           return "Manicura French";
-      if (a.includes("soft gel") || a.includes("softgel")) return "Soft Gel · Diseño de Autor";
-      if (a.includes("permanente"))                       return "Esmaltado Permanente";
-      return "Diseño de Autor";
-    }
-
-    window.abrirLightbox = function (img) {
-      lbImg.src = img.currentSrc || img.src;
-      lbImg.alt = img.getAttribute("alt") || "";
-      lbTit.textContent  = tituloDe(img);
-      lbDesc.textContent = img.dataset.desc || img.getAttribute("alt") || "";
-      lb.classList.add("abierto");
-      document.body.style.overflow = "hidden";
-    };
-
-    window.cerrarLightbox = function () {
-      lb.classList.remove("abierto");
-      document.body.style.overflow = "";
-    };
-
-    // Delegación en fase de captura: intercepta el clic antes de que llegue al
-    // contenedor (que puede tener su propio onclick de "reservar").
-    document.addEventListener("click", function (e) {
-      const img = e.target.closest && e.target.closest("img.zoomable");
-      if (!img) return;
-      e.preventDefault();
-      e.stopPropagation();
-      abrirLightbox(img);
-    }, true);
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && lb.classList.contains("abierto")) cerrarLightbox();
-    });
-  })();
 </script>
 
 </body>
