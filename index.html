@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<link href="logo-mark.png" rel="apple-touch-icon"/>
+<title>deFeñaNails Fine Art | Soft Minimalism</title>
+<style>
+  body { font-family: 'Manrope', sans-serif; }
+  .glass-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .soft-glow { box-shadow: 0px 10px 30px rgba(244,182,185,0.15); }
+  .editorial-line {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(129,81,84,0) 0%, rgba(129,81,84,0.2) 50%, rgba(129,81,84,0) 100%);
+  }
+  .vertical-divider { width: 0.5px; background-color: rgba(131,115,116,0.2); height: 1rem; }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ── Identidad de marca: acuarela pastel extraída del logo ───────────── */
+  .brand-gradient {
+    background: linear-gradient(120deg, #c7e2e9 0%, #c8e0d9 30%, #f0d8ec 64%, #e5cce8 100%);
+  }
+  .brand-line {
+    height: 2px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, rgba(199,226,233,0) 0%, #c7e2e9 20%, #c8e0d9 45%, #ebd3e7 70%, #e5cce8 90%, rgba(229,204,232,0) 100%);
+  }
+  .brand-text {
+    background: linear-gradient(110deg, #7aa7bb 0%, #79b2a0 35%, #c489b9 68%, #a98fc4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .brand-ring { box-shadow: 0 0 0 1px rgba(255,255,255,0.7), 0 6px 18px rgba(201,143,191,0.25); }
+  .brand-glow { box-shadow: 0 10px 40px rgba(199,226,233,0.35), 0 4px 24px rgba(235,211,231,0.3); }
+</style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-lowest": "#ffffff",
+          "on-error": "#ffffff",
+          "secondary-fixed": "#e5e2e1",
+          "tertiary-fixed-dim": "#b8cac9",
+          "error-container": "#ffdad6",
+          "surface-container-highest": "#e3e2e0",
+          "on-primary-fixed-variant": "#663a3d",
+          "tertiary-container": "#b7c9c8",
+          "surface-tint": "#815154",
+          "on-secondary-container": "#636262",
+          "on-background": "#1a1c1a",
+          "surface-variant": "#e3e2e0",
+          "secondary-fixed-dim": "#c8c6c5",
+          "on-primary-fixed": "#331014",
+          "on-tertiary-fixed-variant": "#3a4a49",
+          "surface-container-high": "#e9e8e5",
+          "on-secondary-fixed": "#1c1b1b",
+          "surface-bright": "#faf9f6",
+          "primary": "#815154",
+          "secondary": "#5f5e5e",
+          "primary-fixed": "#ffdadb",
+          "error": "#ba1a1a",
+          "on-primary": "#ffffff",
+          "background": "#faf9f6",
+          "secondary-container": "#e2dfde",
+          "surface": "#faf9f6",
+          "inverse-surface": "#2f312f",
+          "primary-fixed-dim": "#f5b7ba",
+          "surface-dim": "#dbdad7",
+          "on-error-container": "#93000a",
+          "on-tertiary": "#ffffff",
+          "tertiary-fixed": "#d4e6e5",
+          "inverse-primary": "#f5b7ba",
+          "outline-variant": "#d5c2c2",
+          "surface-container-low": "#f4f3f1",
+          "on-tertiary-fixed": "#0e1e1e",
+          "on-surface": "#1a1c1a",
+          "outline": "#837374",
+          "on-tertiary-container": "#455555",
+          "on-surface-variant": "#514344",
+          "tertiary": "#516161",
+          "primary-container": "#f4b6b9",
+          "inverse-on-surface": "#f2f1ee",
+          "on-secondary-fixed-variant": "#474746",
+          "on-secondary": "#ffffff",
+          "on-primary-container": "#734548",
+          "surface-container": "#efeeeb",
+          "logo-blue": "#c7e2e9",
+          "logo-sage": "#c8e0d9",
+          "logo-pink": "#ebd3e7",
+          "logo-lavender": "#e5cce8",
+          "logo-mauve": "#a694a7",
+          "logo-cream": "#fff9f7"
+        },
+        borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+        spacing: {
+          "container-max": "1280px",
+          "section-padding": "120px",
+          "margin-mobile": "20px",
+          "base": "8px",
+          "margin-desktop": "64px",
+          "gutter": "24px"
+        },
+        fontFamily: {
+          "body-md": ["Manrope"],
+          "label-sm": ["Manrope"],
+          "headline-lg": ["Playfair Display"],
+          "headline-lg-mobile": ["Playfair Display"],
+          "body-lg": ["Manrope"],
+          "headline-md": ["Playfair Display"],
+          "display-lg": ["Playfair Display"]
+        },
+        fontSize: {
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "600" }],
+          "headline-lg": ["40px", { lineHeight: "48px", fontWeight: "600" }],
+          "headline-lg-mobile": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+          "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+          "headline-md": ["28px", { lineHeight: "36px", fontWeight: "500" }],
+          "display-lg": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "700" }]
+        }
+      }
+    }
+  }
+</script>
+
+<!-- =====================================================================
+     BASE DE DATOS MAESTRA — deFeñaNails Fine Art
+     @source  defena-data.js (integrado inline para producción)
+     @currency CLP — todos los precios son INTEGER puros
+     ===================================================================== -->
+<script>
+// ─── UTILIDAD DE FORMATO ─────────────────────────────────────────────────────
+function formatCLP(valor, conPrefijo = true) {
+  const numero = new Intl.NumberFormat("es-CL").format(valor);
+  return conPrefijo ? `$${numero}` : numero;
+}
+function precioLabel(item) {
+  return (item.desde ? "Desde " : "") + formatCLP(item.precio);
+}
+
+// ─── SERVICIOS PRINCIPALES (SRV-001 → SRV-005) ───────────────────────────────
+const SERVICIOS_PRINCIPALES = [
+  {
+    id:              "SRV-001",
+    categoria:       "Manicura",
+    nombre:          "Soft gel",
+    nombre_web:      "Soft Gel Extensions",
+    tipo_retiro:     "No Aplica",
+    precio:          19000,
+    descripcion_web: "Largo y forma perfecta con la ligereza de tus uñas naturales.",
+    icono_material:  "auto_awesome",
+    complemento_de:  null,
+    badges:          ["Top Seller"],
+    visible_web:     true,
+    desde:           true,
+  },
+  {
+    id:              "SRV-002",
+    categoria:       "Manicura",
+    nombre:          "Esmaltado permanente",
+    nombre_web:      "Esmaltado Permanente",
+    tipo_retiro:     "No Aplica",
+    precio:          10000,
+    descripcion_web: "Color impecable por más de 15 días con acabado espejo.",
+    icono_material:  "colorize",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+  },
+  {
+    id:              "SRV-003",
+    categoria:       "Manicura",
+    nombre:          "Nivelación con base rubber",
+    nombre_web:      "Nivelación con Base Rubber",
+    tipo_retiro:     "No Aplica",
+    precio:          5000,
+    descripcion_web: "Base de nivelación para una superficie uniforme y duradera.",
+    icono_material:  "layers",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+  },
+  {
+    id:              "SRV-004",
+    categoria:       "Manicura",
+    nombre:          "Limpieza profunda",
+    nombre_web:      "Limpieza Profunda",
+    tipo_retiro:     "No Aplica",
+    precio:          7000,
+    descripcion_web: "Exfoliación e hidratación intensiva de cutículas y lámina ungueal.",
+    icono_material:  "spa",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+  },
+  {
+    id:              "SRV-006",
+    categoria:       "Manicura",
+    nombre:          "Diseño",
+    nombre_web:      "Diseño",
+    tipo_retiro:     "No Aplica",
+    precio:          2000,
+    descripcion_web: "Ojo de gato, cromado, cristalería, relieves y más.",
+    icono_material:  "auto_fix_high",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+    desde:           true,
+  },
+  {
+    id:              "SRV-005",
+    categoria:       "Manicura",
+    nombre:          "Press on",
+    nombre_web:      "Press-on Personalizado",
+    tipo_retiro:     "No Aplica",
+    precio:          15000,
+    descripcion_web: "Sets reutilizables de alta durabilidad, diseñados a medida. Calidad profesional en 5 minutos.",
+    icono_material:  "back_hand",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+  },
+];
+
+// ─── SERVICIOS DE RETIRO (RET-001 → RET-004) ─────────────────────────────────
+const SERVICIOS_RETIRO = [
+  {
+    id:              "RET-001",
+    categoria:       "Retiro",
+    nombre:          "Retiro externo permanente",
+    nombre_web:      "Retiro de Producto Externo — Permanente",
+    tipo_retiro:     "Externo",
+    precio:          4500,
+    descripcion_web: "Esmalte permanente de otro estudio. Retiro seguro sin daño a la uña natural.",
+    icono_material:  "ink_eraser",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+  },
+  {
+    id:              "RET-002",
+    categoria:       "Retiro",
+    nombre:          "Retiro externo soft gel",
+    nombre_web:      "Retiro de Producto Externo — Soft Gel",
+    tipo_retiro:     "Externo",
+    precio:          5500,
+    descripcion_web: "Sistema soft gel de otro estudio. Protocolo de retiro sin limar la uña natural.",
+    icono_material:  "ink_eraser",
+    complemento_de:  null,
+    badges:          [],
+    visible_web:     true,
+  },
+  {
+    id:              "RET-003",
+    categoria:       "Retiro",
+    nombre:          "Retiro interno permanente",
+    nombre_web:      "Retiro Interno — Permanente",
+    tipo_retiro:     "Interno",
+    precio:          2500,
+    descripcion_web: "Complemento al reservar nuevo Esmaltado Permanente en el salón.",
+    icono_material:  "refresh",
+    complemento_de:  "SRV-002",
+    badges:          ["Complemento"],
+    visible_web:     false,
+  },
+  {
+    id:              "RET-004",
+    categoria:       "Retiro",
+    nombre:          "Retiro interno soft gel",
+    nombre_web:      "Retiro Interno — Soft Gel",
+    tipo_retiro:     "Interno",
+    precio:          3500,
+    descripcion_web: "Complemento al reservar nuevo Soft Gel Extensions en el salón.",
+    icono_material:  "refresh",
+    complemento_de:  "SRV-001",
+    badges:          ["Complemento"],
+    visible_web:     false,
+  },
+];
+
+// ─── COLECCIÓN PRESS-ON (PO-001 → PO-003) ────────────────────────────────────
+const PRESS_ON_COLLECTION = [
+  {
+    id:        "PO-001",
+    nombre:    "Lavender Muse",
+    coleccion: "Custom Shape Set",
+    precio:    35000,
+    desde:     true,
+    imagen_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuB2HgwFWQSLH5YLEutmWYAvKdy8ldHyU7huiXXy6znNqFeuYBdU2LF5PJSeRfEtihy2uec_p4R9oarazorKZGQwJm2mva_Nle52IZiqN44PLfnwsbLUIFt2zb4rnNPGkxLvgmB8dA0anzFK3FwECteKLjYqn3b9ygfa0ePQAUFfpbkCGojbEMX6NJ2GgfGL8t5ASr8G-yPmEi-DwrEe98719C-AyNblOooryFnFjPPlCuyE0M6_4TAAuD-K91nKVF_fDf8IgpoJXQ",
+    imagen_alt: "Press-on mate lavanda con detalles dorados 3D.",
+  },
+  {
+    id:        "PO-002",
+    nombre:    "Milky Way",
+    coleccion: "Bridal Collection",
+    precio:    32000,
+    desde:     true,
+    imagen_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDZxELq8a97BI3g1kMCKDHP-PHhTHrTQ3l9VCPkUXhHOSYOjxV-n48GvEle6GClA6xsicYzgS2Pa3UfRijQ4ia0f3qBa8oShoVv1NCCFtjNbBvmI9JRcJwRr7oKhOPlcLWrcoQUWepgEw8Mqk4NpdEKu18IROWUa-A05gBP-1B9Oj6hr-H0umuShiOP1Z_KLKLYq4l25Q-6PclSGS4sObW7bUd02Fo4JiSYicKjqi5GkM5cftWopJNqyTJ0Y-FK0fS3YAiCUw",
+    imagen_alt: "Press-on blanco lechoso con cristal iridiscente.",
+  },
+  {
+    id:        "PO-003",
+    nombre:    "Midnight Onyx",
+    coleccion: "Edgy Collection",
+    precio:    38000,
+    desde:     true,
+    imagen_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCGsQ0hE87ETFqnTjkWCnFl_NLqHM5hnymuinS4SMj86WAjYEJEJggQxisCz3-pXm4ZesKEFNNq7k_1gMHe9QQwgycmHbhXEl5-BNvB6eJSJDME9bNBFaKOCkR-Xz7aPwD40dkOCexGgi8AYjfoa1JwmaaKfz4M15aKli94VTR5Ys6YdvIlyzQ7eMeYHkFSsdfov5TLoZ0r8rq8_iWnoyaDc3X8GQUN3gRYZJfVmEeVNMV9e2avmfpiJcDfuo8rCFZwgS5zgEw",
+    imagen_alt: "Press-on negro brillante con French plateado.",
+  },
+];
+
+// ─── DERIVADOS ────────────────────────────────────────────────────────────────
+const RETIROS_EXTERNOS  = SERVICIOS_RETIRO.filter(s => s.tipo_retiro === "Externo");
+const RETIROS_INTERNOS  = SERVICIOS_RETIRO.filter(s => s.tipo_retiro === "Interno");
+const SERVICIOS_MAP     = new Map([...SERVICIOS_PRINCIPALES, ...SERVICIOS_RETIRO].map(s => [s.id, s]));
+const OPCIONES_RESERVA  = [
+  ...SERVICIOS_PRINCIPALES.filter(s => s.visible_web).map(s => ({ value: s.id, label: s.nombre_web })),
+  ...PRESS_ON_COLLECTION.map(p => ({ value: p.id, label: `Press-on — ${p.nombre}` })),
+];
+
+// ─── RENDER HELPERS ───────────────────────────────────────────────────────────
+
+/** Inyecta las cards de servicio en #servicios-grid */
+function renderServiciosGrid() {
+  // Las dos cards principales del grid son SRV-001 (Soft Gel) y SRV-002 (Esmaltado)
+  const srv001 = SERVICIOS_MAP.get("SRV-001");
+  const srv002 = SERVICIOS_MAP.get("SRV-002");
+
+  // Retiros internos asociados a cada servicio
+  const ret004 = SERVICIOS_MAP.get("RET-004"); // complemento de SRV-001
+  const ret003 = SERVICIOS_MAP.get("RET-003"); // complemento de SRV-002
+
+  // Card SRV-002 — Esmaltado Permanente
+  document.getElementById("card-srv002-nombre").textContent   = srv002.nombre_web;
+  document.getElementById("card-srv002-desc").textContent     = srv002.descripcion_web;
+  document.getElementById("card-srv002-precio").textContent   = formatCLP(srv002.precio);
+  document.getElementById("card-srv002-ret-nombre").textContent = `• Retiro interno incluible: ${formatCLP(ret003.precio)} adicional`;
+
+  // Card SRV-001 — Soft Gel
+  document.getElementById("card-srv001-nombre").textContent   = srv001.nombre_web;
+  document.getElementById("card-srv001-desc").textContent     = srv001.descripcion_web;
+  document.getElementById("card-srv001-precio").textContent   = precioLabel(srv001);
+  srv001.badges.forEach(badge => {
+    document.getElementById("card-srv001-badge").textContent = badge;
+  });
+}
+
+/** Inyecta los ítems de retiro externo en #retiros-grid */
+function renderRetirosExternos() {
+  const container = document.getElementById("retiros-externos-list");
+  container.innerHTML = RETIROS_EXTERNOS.map(r => `
+    <div class="flex justify-between items-center p-6 border-b border-outline-variant/10 group hover:bg-surface-container transition-colors">
+      <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary">${r.icono_material}</span>
+        <div>
+          <p class="font-label-sm text-label-sm uppercase font-bold">${r.nombre_web}</p>
+          <p class="text-[12px] text-secondary">${r.descripcion_web}</p>
+        </div>
+      </div>
+      <span class="font-bold text-primary whitespace-nowrap">+${formatCLP(r.precio)}</span>
+    </div>
+  `).join("");
+}
+
+/** Inyecta los servicios adicionales visibles en #complementos-list */
+function renderComplementos() {
+  // SRV-003, SRV-004 se muestran como complementos en esta sección
+  const complementos = [
+    { ...SERVICIOS_MAP.get("SRV-004"), icono: "spa",          sub: "Exfoliación y masaje con aceites esenciales" },
+    { ...SERVICIOS_MAP.get("SRV-003"), icono: "layers",       sub: "Nivelación con base rubber para durabilidad máxima" },
+  ];
+  const container = document.getElementById("complementos-list");
+  container.innerHTML = complementos.map(c => `
+    <div class="flex justify-between items-center p-6 border-b border-outline-variant/10 group hover:bg-surface-container transition-colors">
+      <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary">${c.icono}</span>
+        <div>
+          <p class="font-label-sm text-label-sm uppercase font-bold">${c.nombre_web}</p>
+          <p class="text-[12px] text-secondary">${c.sub}</p>
+        </div>
+      </div>
+      <span class="font-bold text-primary whitespace-nowrap">+${formatCLP(c.precio)}</span>
+    </div>
+  `).join("");
+}
+
+/** Inyecta la galería Press-On */
+function renderPressOn() {
+  const container = document.getElementById("press-on-gallery");
+  container.innerHTML = PRESS_ON_COLLECTION.map(p => `
+    <div class="min-w-[300px] md:min-w-[400px] snap-center">
+      <div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[3/4]">
+        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+             src="${p.imagen_url}" alt="${p.imagen_alt}"/>
+        <div class="absolute bottom-6 left-6 right-6">
+          <div class="glass-card p-4 rounded-lg flex justify-between items-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+            <div>
+              <h4 class="font-label-sm text-label-sm font-bold uppercase">${p.nombre}</h4>
+              <p class="text-[12px] text-secondary">${p.coleccion}</p>
+            </div>
+            <span class="text-primary font-bold whitespace-nowrap">${precioLabel(p)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+/** Renderiza checkboxes de servicios en el formulario */
+function renderSelectReserva() {
+  const container = document.getElementById("servicios-checks");
+  if (!container) return;
+  const opciones = [
+    ...SERVICIOS_PRINCIPALES.filter(s => s.visible_web).map(s => ({ id: s.id, label: s.nombre_web, precio: s.precio, desde: s.desde })),
+    ...RETIROS_EXTERNOS.map(r => ({ id: r.id, label: r.nombre_web, precio: r.precio, desde: false })),
+    ...PRESS_ON_COLLECTION.map(p => ({ id: p.id, label: `Press-on — ${p.nombre}`, precio: p.precio, desde: p.desde })),
+  ];
+  container.innerHTML = opciones.map(o => `
+    <label class="flex items-center justify-between gap-3 p-3 rounded-lg border border-outline-variant/20 cursor-pointer hover:bg-primary-fixed/10 transition-colors group">
+      <div class="flex items-center gap-3">
+        <input type="checkbox" value="${o.id}" data-precio="${o.precio}" data-label="${o.label}"
+               onchange="actualizarTotal()"
+               class="w-4 h-4 accent-primary cursor-pointer"/>
+        <span class="text-[13px] font-medium">${o.label}</span>
+      </div>
+      <span class="text-primary font-bold text-[13px] whitespace-nowrap">${precioLabel(o)}</span>
+    </label>
+  `).join("");
+}
+
+function actualizarTotal() {
+  const checks = [...document.querySelectorAll("#servicios-checks input:checked")];
+  const total  = checks.reduce((s, c) => s + parseInt(c.dataset.precio), 0);
+  const el     = document.getElementById("precio-estimado");
+  if (el) el.textContent = total > 0 ? `Total estimado: ${formatCLP(total)}` : "";
+}
+
+/** Inicializa todo al cargar el DOM */
+document.addEventListener("DOMContentLoaded", () => {
+  renderServiciosGrid();
+  renderRetirosExternos();
+  renderComplementos();
+  renderPressOn();
+  renderSelectReserva();
+});
+</script>
+</head>
+
+<body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-container">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20">
+  <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+    <a href="#" class="flex items-center gap-3 group">
+      <img src="logo-mark.png" alt="deFeña Nails Fine Art" class="w-11 h-11 rounded-full object-cover brand-ring transition-transform duration-300 group-hover:scale-105"/>
+      <span class="font-headline-md text-headline-md italic text-on-surface tracking-tighter">deFeñaNails</span>
+    </a>
+    <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-primary pb-1 transition-all duration-300 whitespace-nowrap" href="#servicios">Servicios</a>
+      <div class="vertical-divider"></div>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#press-on">Press-on</a>
+      <div class="vertical-divider"></div>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#galeria">Galería</a>
+      <div class="vertical-divider"></div>
+      <a class="font-label-sm text-label-sm uppercase tracking-widest text-secondary hover:text-primary transition-colors whitespace-nowrap" href="#citas">Citas</a>
+    </div>
+    <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface py-2 px-6 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary transition-all duration-300 transform active:scale-95">
+      Reservar
+    </button>
+  </div>
+</nav>
+
+<main class="pt-20">
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="relative h-[921px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img class="w-full h-full object-cover"
+           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGQgjleRjBIpcUTZTYLOkZe2HPEHAyE54W3CQ6EsiSLo80hOV_-ygKT5jFkGzeeLZr1y72bYVhf3n4QXGeXMTeFjVp_yWZ-4e6OluZ6RRVxtDwrYyfMP9V-GIGN73CnAKhmIlSOVZ28dpT_8WtxYIyzu62jaLf1IaqazQZoUHLSVOcqwyibRiDFK4v6r5qSLx9ACxDerY2u5q-rrdR9hC3KRuQAKucr2H-LIsJWIY52SJHmy-qniCJR8Z88fHJDKfgIZuPiaYRgw"
+           alt="Manos manicuradas sobre seda crema con iluminación etérea"/>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/60"></div>
+      <div class="absolute inset-x-0 bottom-0 h-40 brand-gradient opacity-25 mix-blend-multiply"></div>
+    </div>
+    <div class="relative z-10 text-center px-margin-mobile">
+      <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-4 block">Fine Art Nail Studio</span>
+      <h1 class="font-display-lg text-[48px] md:text-display-lg leading-tight mb-8 max-w-4xl mx-auto italic">
+        La belleza está en el detalle.
+      </h1>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-inverse-surface text-surface px-10 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:shadow-xl transition-all">
+          Explorar Colección
+        </button>
+        <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="border border-inverse-surface text-on-surface px-10 py-4 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container-low transition-all">
+          Agendar Cita
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICIOS DE AUTOR ────────────────────────────────────────────────── -->
+  <section class="py-section-padding px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="servicios">
+    <div class="mb-20 text-center">
+      <h2 class="font-headline-lg text-headline-lg mb-3">Servicios de Autor</h2>
+      <div class="brand-line w-32 mx-auto"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+      <!-- Card grande — imagen editorial -->
+      <div class="group relative aspect-[4/5] overflow-hidden rounded-xl soft-glow bg-white">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9dl2xJltqzqs5taQW5A-Pr1bx0jeuV8UDJMBljZlV6BPUpasWpe7v0qItxrr8ZtmvEZ6SSisXcqPFzaV1IZkvMgwm-6-QYCbQsk5tn4fI4jTiPSWHu1ADeCqah0AEMeo_ac2IcgKPcG_my0T6o_IWIV5qVdW5UAS2DHlPkj4WS8wntWd2waJrTcGQGC_296zlccL6vuA_NY787qeOSuFxEg6aHuODwn-1W3TsXWufYXuAEySQYv566U4C5CWMfYc8-cdrKAUI1A"
+             alt="Manicura de diseño con pincel fino y pigmentos de alta gama"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+          <span class="font-label-sm text-label-sm uppercase tracking-widest mb-2 opacity-80">Signature Art</span>
+          <h3 class="font-headline-md text-headline-md mb-4">Diseño</h3>
+          <p class="font-body-md text-body-md mb-6 max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            Ojo de gato · Cromado · Cristalería · Relieves. El detalle que transforma tu manicura en arte.
+          </p>
+          <div class="flex items-baseline gap-2">
+            <span class="font-label-sm text-label-sm uppercase">Desde</span>
+            <span class="text-2xl font-bold font-display-lg">$2.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards pequeñas — datos desde SERVICIOS_PRINCIPALES -->
+      <div class="grid grid-cols-1 gap-gutter">
+
+        <!-- SRV-002 — Esmaltado Permanente -->
+        <div class="glass-card p-8 rounded-xl flex flex-col justify-between border border-outline-variant/10 group hover:bg-primary-fixed/5 transition-all">
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <h3 class="font-headline-md text-headline-md" id="card-srv002-nombre">Cargando…</h3>
+              <span class="material-symbols-outlined text-primary text-3xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+            <p class="font-body-md text-body-md text-secondary mb-4" id="card-srv002-desc"></p>
+          </div>
+          <div class="flex justify-between items-end">
+            <ul class="text-[12px] font-label-sm uppercase tracking-tighter text-secondary/60">
+              <li>• Nivelación Incluida</li>
+              <li id="card-srv002-ret-nombre">• Retiro interno disponible</li>
+            </ul>
+            <div class="text-right">
+              <span class="block font-label-sm text-label-sm text-secondary/50 uppercase">Inversión</span>
+              <span class="text-xl font-bold text-primary" id="card-srv002-precio"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SRV-001 — Soft Gel Extensions -->
+        <div class="glass-card p-8 rounded-xl flex flex-col justify-between border border-outline-variant/10 group hover:bg-primary-fixed/5 transition-all">
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <h3 class="font-headline-md text-headline-md" id="card-srv001-nombre">Cargando…</h3>
+              <span class="material-symbols-outlined text-primary text-3xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+            <p class="font-body-md text-body-md text-secondary mb-4" id="card-srv001-desc"></p>
+          </div>
+          <div class="flex justify-between items-end">
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-tertiary-fixed rounded-full text-[10px] font-bold uppercase tracking-widest text-on-tertiary-fixed" id="card-srv001-badge"></span>
+            </div>
+            <div class="text-right">
+              <span class="block font-label-sm text-label-sm text-secondary/50 uppercase">Inversión</span>
+              <span class="text-xl font-bold text-primary" id="card-srv001-precio"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRESS-ON ──────────────────────────────────────────────────────────── -->
+  <section class="relative py-section-padding bg-surface-container-low overflow-hidden" id="press-on">
+    <div class="absolute -top-24 -left-24 w-96 h-96 brand-gradient rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-20 w-96 h-96 brand-gradient rounded-full blur-3xl opacity-25 pointer-events-none"></div>
+    <div class="relative px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+      <div class="max-w-xl">
+        <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-2 block">Luxury Press-on Nails</span>
+        <h2 class="font-headline-lg text-headline-lg">Lleva el salón a casa.</h2>
+        <p class="font-body-md text-body-md text-secondary mt-4">
+          Sets reutilizables de alta durabilidad, diseñados a medida para ti. Calidad profesional en 5 minutos.
+        </p>
+      </div>
+      <button onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})" class="bg-primary text-white px-8 py-3 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary/90 transition-all flex items-center gap-2">
+        Ver Catálogo <span class="material-symbols-outlined text-sm">shopping_bag</span>
+      </button>
+    </div>
+
+    <!-- Galería generada desde PRESS_ON_COLLECTION -->
+    <div class="relative flex gap-8 px-margin-mobile md:px-margin-desktop overflow-x-auto pb-12 snap-x hide-scrollbar"
+         id="press-on-gallery">
+      <!-- Inyectado por renderPressOn() -->
+    </div>
+  </section>
+
+  <!-- ── DETALLES Y COMPLEMENTOS ───────────────────────────────────────────── -->
+  <section class="py-section-padding px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h3 class="font-headline-md text-headline-md">Detalles y Complementos</h3>
+      <div class="brand-line w-24 mx-auto my-3"></div>
+      <p class="font-body-md text-body-md text-secondary mt-2 italic">Transparencia en cada servicio.</p>
+    </div>
+
+    <div class="space-y-0">
+      <!-- Retiros externos — generados desde RETIROS_EXTERNOS -->
+      <div id="retiros-externos-list"><!-- Inyectado por renderRetirosExternos() --></div>
+
+      <!-- Complementos adicionales (SRV-003, SRV-004) — generados desde SERVICIOS_MAP -->
+      <div id="complementos-list"><!-- Inyectado por renderComplementos() --></div>
+
+      <!-- Ítem estático (no pertenece al catálogo base de precios) -->
+      <div class="flex justify-between items-center p-6 border-b border-outline-variant/10 group hover:bg-surface-container transition-colors">
+        <div class="flex items-center gap-4">
+          <span class="material-symbols-outlined text-primary">magic_button</span>
+          <div>
+            <p class="font-label-sm text-label-sm uppercase font-bold">Cristales Swarovsky</p>
+            <p class="text-[12px] text-secondary">Por unidad o set completo</p>
+          </div>
+        </div>
+        <span class="font-bold text-primary">Desde +$2.000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALERÍA ───────────────────────────────────────────────────────────── -->
+  <section class="py-section-padding" id="galeria">
+    <div class="px-margin-mobile md:px-margin-desktop mb-12 flex justify-between items-end">
+      <h2 class="font-headline-lg text-headline-lg">Galería de Arte</h2>
+      <a class="font-label-sm text-label-sm uppercase underline tracking-widest text-primary hover:text-on-surface transition-colors" href="https://instagram.com/defenanails" target="_blank" rel="noopener">Ver Instagram</a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 px-2">
+      <div class="aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3tgngedWph8pR6v-KMU2aYQfKSLuM17esAK_JRPR8fwyVZbAwxrx2YjDQI5nt7dXGuUnr6DIG1vnFZPTt17jDv11C4duhJP0wXFa3gTJFzVJV1_JiWI8xTUTs7NWG69kjkY6x3I_2RQ3KhKetyyYnSQUxsHwk4mMA6_2Md6RQNaJwquEXPhFBSJyvUvvjY3XFzFwx0EN0Ga9_ugX2CX7Rs4O6qDG7Vy6nv5NG4gO_M-Sp6s6nFkwgnJZT7m5LbYVgGaIv7Xdd7Q"
+             alt="Diseño de uñas con pigmentos artísticos"/>
+      </div>
+      <div class="aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcPwZiAq-Df6wtN_-lB5mL-oXvYV33pNf8v0dJzgGoEZa5kJkW-K2kxIAAl19uhqXoWByFL3QHzq_GScYOzaC_IshRht3DRYJhtOoHUDGCd2PiLKMlbmNhqqd_raqF2G2uVkuZhOzR1ysxwQu39MI_0of9KHJFhk9wQpTkf5GEw7OamtOOE8yiCkhcTCsFjntxKVRry_bVPSxqxFGC9u9k1xP9hNStne96j407TJTe3KKLM0A5FBeuMiNGEFvHKCpMdDvxMg"
+             alt="Diseño forest green con flor seca en gel"/>
+      </div>
+      <div class="aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbAekcVd87XK-1hJImEDSePKttPHiZk-8q34CVAB7Eu7l41QPp2fpjuJJ4OVCF0C8rWmCzyNxzeuHg6YYEEYe-NBto7Wx2lUtV-IAOHnsOH6w1z5JWxXuPTslk6eZsVLHdQ_KJlM5ukzRB9DyKoPwfzPxtIUsYuc2AI1xQUDUStsP2McndjOZafNOfG3tIpVExyAdM9wTMYJfW6qGlPxzjoo3E9uWtss9tqP8vCyu_KeXSxEeH4RwccM26X_hjcGQEG5-8Yj3QbA"
+             alt="Manicura roja clásica con acabado espejo"/>
+      </div>
+      <div class="aspect-square overflow-hidden bg-surface-container">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHdNXlMLTxYw7WRmxNEoyCgs-UKJnmtsegF7L4Lv8QHtYgdfJmce4l3Sff_jAzZ3_kSurSdxrnkx42nHDARf1LV818uW1gl4f1-AFAOQdYkfUSOIyrONUAmHpCZFXLHH6bimPzShEmZ41DahC9VmlRq-_-2M4CtR-wEgaPZ2XyGvG32tcuDSeCD1YARrYH-cD4aIdLKWkQ8hQnPFsEFG3G1LNRbj8WucHg61coImAvowriHQqA0kLLfywdYbLJy-DjNB3NsvEOEQ"
+             alt="Arte minimalista con líneas doradas sobre base nude"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESERVA ───────────────────────────────────────────────────────────── -->
+  <section class="relative py-section-padding px-margin-mobile md:px-margin-desktop bg-surface-container-lowest overflow-hidden" id="citas">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-72 brand-gradient opacity-15 blur-3xl pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto glass-card rounded-2xl brand-glow text-center border border-outline-variant/10 overflow-hidden">
+      <div class="brand-gradient h-1.5 w-full"></div>
+      <div class="p-12">
+      <img src="logo-mark.png" alt="deFeña Nails" class="w-16 h-16 rounded-full object-cover mx-auto mb-6 brand-ring"/>
+      <h2 class="font-headline-lg text-headline-lg mb-6 italic">¿Lista para transformar tus manos?</h2>
+      <p class="font-body-lg text-body-lg text-secondary mb-12">Agenda tu espacio exclusivo y vive la experiencia de la manicura de autor.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="text-left space-y-4">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Tus Datos</label>
+          <input id="input-nombre" class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-all placeholder:text-secondary/40"
+                 placeholder="Nombre Completo" type="text"/>
+          <input id="input-fecha" class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-all" type="date"/>
+        </div>
+        <div class="text-left space-y-3">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Servicios de Interés</label>
+          <div id="servicios-checks" class="space-y-2 max-h-56 overflow-y-auto pr-1"></div>
+          <p id="precio-estimado" class="text-sm font-bold text-primary min-h-[20px] pt-1 border-t border-outline-variant/20"></p>
+        </div>
+      </div>
+      <button onclick="enviarPorWhatsApp()"
+              class="bg-inverse-surface text-surface w-full md:w-auto px-20 py-5 rounded-lg font-label-sm text-label-sm uppercase tracking-widest hover:scale-[1.02] transition-all flex items-center justify-center gap-3 mx-auto">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.849L.073 23.927l6.244-1.637A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.006-1.374l-.36-.214-3.706.972.989-3.614-.234-.371A9.79 9.79 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+        </svg>
+        Confirmar por WhatsApp
+      </button>
+      <p class="text-[12px] text-secondary/60 mt-6">* Te responderemos en menos de 2 horas para confirmar.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+function enviarPorWhatsApp() {
+  const nombre  = document.getElementById("input-nombre").value.trim();
+  const fecha   = document.getElementById("input-fecha").value;
+  const checks  = [...document.querySelectorAll("#servicios-checks input:checked")];
+
+  if (checks.length === 0) {
+    alert("Por favor selecciona al menos un servicio antes de continuar.");
+    return;
+  }
+
+  const lista = checks.map(c => `• ${c.dataset.label} — ${formatCLP(parseInt(c.dataset.precio))}`).join("\n");
+  const total = checks.reduce((s, c) => s + parseInt(c.dataset.precio), 0);
+  const fechaFmt = fecha
+    ? new Date(fecha + "T12:00:00").toLocaleDateString("es-CL", { weekday: "long", day: "numeric", month: "long" })
+    : null;
+
+  let mensaje = `Hola! 💅 Me gustaría agendar una cita.\n\n`;
+  if (nombre) mensaje += `Nombre: ${nombre}\n\n`;
+  mensaje += `Servicios:\n${lista}\n\nTotal estimado: ${formatCLP(total)}\n`;
+  if (fechaFmt) mensaje += `Fecha preferida: ${fechaFmt}\n`;
+  mensaje += `\n¿Qué horas tienes disponibles para esta semana?`;
+
+  window.open(`https://wa.me/56977562949?text=${encodeURIComponent(mensaje)}`, "_blank");
+}
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+</script>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer class="relative w-full py-section-padding bg-surface-container-low border-t border-outline-variant/10 overflow-hidden">
+  <div class="brand-line absolute top-0 inset-x-0"></div>
+  <div class="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[28rem] h-[28rem] brand-gradient rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+  <div class="relative flex flex-col items-center gap-base px-margin-mobile md:px-margin-desktop text-center">
+    <img src="logo-mark.png" alt="deFeña Nails Fine Art" class="w-24 h-24 rounded-full object-cover mb-6 brand-ring"/>
+    <div class="font-headline-md text-headline-md text-on-surface italic mb-2">deFeñaNails Fine Art</div>
+    <p class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold mb-8">Soft Minimalism · Manicura de Autor</p>
+    <div class="flex flex-wrap justify-center gap-8 mb-12">
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#">Privacidad</a>
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#">Términos</a>
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="#">Contacto</a>
+      <a class="text-secondary hover:text-primary underline transition-all font-label-sm text-label-sm uppercase tracking-widest" href="https://instagram.com/defenanails" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="font-body-md text-body-md text-secondary opacity-60">© 2024 deFeñaNails Fine Art. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+        entry.target.classList.remove('opacity-0', 'translate-y-10');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(section => {
+    section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+    observer.observe(section);
+  });
+</script>
+
+</body>
+</html>
