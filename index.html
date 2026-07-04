@@ -364,34 +364,22 @@ const SERVICIOS_RETIRO = [
 ];
 
 // ─── COLECCIÓN PRESS-ON (PO-001 → PO-003) ────────────────────────────────────
+// Un solo producto press-on con 3 fotos que rotan en un carrusel.
+const PRESS_ON_PRODUCTO = {
+  id:          "PO-001",
+  nombre:      "Press-on Personalizado",
+  precio:      35000,
+  desde:       true,
+  descripcion: "Set reutilizable de alta durabilidad, diseñado a tu medida. Calidad profesional lista en 5 minutos.",
+  fotos: [
+    { url: "img/press-on-set.jpeg",     caption: "Diseño a medida",  alt: "Set de press-on de autor con diseños variados: relieve, cromado, ojo de gato, polka dots y francesas." },
+    { url: "img/press-on-estuche.jpeg", caption: "En su estuche",    alt: "Set de press-on personalizado presentado en su estuche transparente." },
+    { url: "img/press-on-logo.jpeg",    caption: "Edición de marca", alt: "Estuche de press-on cerrado con el sticker holográfico de deFeñaNails." },
+  ],
+};
+// El formulario de reserva usa una sola opción de press-on.
 const PRESS_ON_COLLECTION = [
-  {
-    id:        "PO-001",
-    nombre:    "Set Personalizado",
-    coleccion: "Diseño a Medida",
-    precio:    35000,
-    desde:     true,
-    imagen_url: "img/press-on-set.jpeg",
-    imagen_alt: "Set de press-on de autor con diseños variados: relieve, cromado, ojo de gato, polka dots y francesas.",
-  },
-  {
-    id:        "PO-002",
-    nombre:    "Set en Estuche",
-    coleccion: "Listo para Regalo",
-    precio:    35000,
-    desde:     true,
-    imagen_url: "img/press-on-estuche.jpeg",
-    imagen_alt: "Set de press-on personalizado presentado en su estuche transparente.",
-  },
-  {
-    id:        "PO-003",
-    nombre:    "Estuche deFeñaNails",
-    coleccion: "Edición de Marca",
-    precio:    35000,
-    desde:     true,
-    imagen_url: "img/press-on-logo.jpeg",
-    imagen_alt: "Estuche de press-on cerrado con el sticker holográfico de deFeñaNails.",
-  },
+  { id: "PO-001", nombre: "Personalizado", precio: 35000, desde: true },
 ];
 
 // ─── DERIVADOS ────────────────────────────────────────────────────────────────
@@ -470,29 +458,74 @@ function renderComplementos() {
 }
 
 /** Inyecta la galería Press-On (info siempre visible: en móvil no existe hover) */
+/** Carrusel de un solo producto press-on: 3 fotos que rotan con ritmo pausado + flechas */
+let poIdx = 0, poTimer = null, poCaptions = [];
 function renderPressOn() {
   const container = document.getElementById("press-on-gallery");
-  container.innerHTML = PRESS_ON_COLLECTION.map(p => `
-    <div class="min-w-[280px] md:min-w-[400px] snap-center">
-      <div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[3/4] bg-surface-container"
-           onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
-        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in zoomable"
-             loading="lazy" decoding="async"
-             data-titulo="Press-on — ${p.nombre}" data-desc="${p.coleccion}. ${p.imagen_alt}" data-precio="${precioLabel(p)}"
-             src="${p.imagen_url}" alt="${p.imagen_alt}"
-             onerror="pressOnFallback(this)"/>
-        <div class="absolute bottom-4 left-4 right-4">
-          <div class="glass-card p-4 rounded-lg flex justify-between items-center gap-3 transition-transform duration-300 group-hover:-translate-y-1">
+  const P = PRESS_ON_PRODUCTO;
+  poCaptions = P.fotos.map(f => f.caption);
+  const slides = P.fotos.map((f, i) => `
+    <img class="po-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out cursor-zoom-in zoomable"
+         style="opacity:${i === 0 ? 1 : 0}; pointer-events:${i === 0 ? "auto" : "none"}"
+         loading="${i === 0 ? "eager" : "lazy"}" decoding="async"
+         data-titulo="${P.nombre}" data-desc="${P.descripcion}" data-precio="${precioLabel(P)}"
+         src="${f.url}" alt="${f.alt}" onerror="pressOnFallback(this)"/>`).join("");
+  const dots = P.fotos.map((f, i) => `
+    <button onclick="poGo(${i})" aria-label="Ver foto ${i + 1}: ${f.caption}"
+            class="po-dot h-2.5 rounded-full transition-all duration-300 ${i === 0 ? "w-6 bg-primary" : "w-2.5 bg-outline-variant/60 hover:bg-outline-variant"}"></button>`).join("");
+  container.innerHTML = `
+    <div class="relative max-w-2xl mx-auto" onmouseenter="poPause()" onmouseleave="poResume()">
+      <div class="relative overflow-hidden rounded-2xl aspect-[4/3] bg-surface-container soft-glow">
+        ${slides}
+        <div class="absolute bottom-4 left-4 right-4 pointer-events-none">
+          <div class="glass-card px-4 py-3 rounded-lg flex justify-between items-center gap-3">
             <div>
-              <h4 class="font-label-sm text-label-sm font-bold uppercase">${p.nombre}</h4>
-              <p class="text-[12px] text-secondary">${p.coleccion}</p>
+              <h4 class="font-label-sm text-label-sm font-bold uppercase">${P.nombre}</h4>
+              <p id="po-caption" class="text-[12px] text-secondary">${P.fotos[0].caption}</p>
             </div>
-            <span class="text-primary font-bold whitespace-nowrap text-[13px]">${precioLabel(p)}</span>
+            <span class="text-primary font-bold whitespace-nowrap text-[13px]">${precioLabel(P)}</span>
           </div>
         </div>
       </div>
-    </div>
-  `).join("");
+      <button onclick="poPrev()" aria-label="Foto anterior"
+              class="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full glass-card brand-ring flex items-center justify-center text-on-surface hover:bg-primary hover:text-white transition-colors z-10">
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <button onclick="poNext()" aria-label="Foto siguiente"
+              class="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full glass-card brand-ring flex items-center justify-center text-on-surface hover:bg-primary hover:text-white transition-colors z-10">
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+      <div class="flex justify-center gap-2 mt-5">${dots}</div>
+    </div>`;
+  poIdx = 0;
+  poResume();
+}
+function poShow(i) {
+  const slides = document.querySelectorAll("#press-on-gallery .po-slide");
+  const dots   = document.querySelectorAll("#press-on-gallery .po-dot");
+  if (!slides.length) return;
+  poIdx = (i + slides.length) % slides.length;
+  slides.forEach((s, k) => {
+    s.style.opacity = (k === poIdx) ? "1" : "0";
+    s.style.pointerEvents = (k === poIdx) ? "auto" : "none";
+  });
+  dots.forEach((d, k) => {
+    d.classList.toggle("w-6", k === poIdx);
+    d.classList.toggle("bg-primary", k === poIdx);
+    d.classList.toggle("w-2.5", k !== poIdx);
+    d.classList.toggle("bg-outline-variant/60", k !== poIdx);
+  });
+  const cap = document.getElementById("po-caption");
+  if (cap) cap.textContent = poCaptions[poIdx] || "";
+}
+function poNext() { poShow(poIdx + 1); poResume(); }
+function poPrev() { poShow(poIdx - 1); poResume(); }
+function poGo(i)  { poShow(i); poResume(); }
+function poPause() { if (poTimer) { clearInterval(poTimer); poTimer = null; } }
+function poResume() {
+  poPause();
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  poTimer = setInterval(() => poShow(poIdx + 1), 4500);
 }
 
 /** Renderiza checkboxes de servicios en el formulario */
@@ -742,9 +775,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </button>
     </div>
 
-    <!-- Galería generada desde PRESS_ON_COLLECTION -->
-    <div class="relative flex gap-8 px-margin-mobile md:px-margin-desktop overflow-x-auto pb-12 snap-x hide-scrollbar"
-         id="press-on-gallery">
+    <!-- Carrusel de un solo producto (generado por renderPressOn) -->
+    <div class="relative px-margin-mobile md:px-margin-desktop" id="press-on-gallery">
       <!-- Inyectado por renderPressOn() -->
     </div>
   </section>
