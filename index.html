@@ -78,6 +78,14 @@
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
+
+  /* ── Lightbox / ficha de imagen ─────────────────────────────────────────── */
+  #lightbox { display: none; }
+  #lightbox.abierto { display: flex; }
+  #lightbox .lb-backdrop { animation: lbFade .3s ease both; }
+  #lightbox .lb-card { animation: lbCard .32s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lbCard { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
 </style>
 <!-- Datos estructurados: ficha de negocio local para Google -->
 <script type="application/ld+json">
@@ -468,8 +476,9 @@ function renderPressOn() {
     <div class="min-w-[280px] md:min-w-[400px] snap-center">
       <div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[3/4] bg-surface-container"
            onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
-        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in zoomable"
              loading="lazy" decoding="async"
+             data-titulo="Press-on — ${p.nombre}" data-desc="${p.coleccion}. ${p.imagen_alt}"
              src="${p.imagen_url}" alt="${p.imagen_alt}"
              onerror="pressOnFallback(this)"/>
         <div class="absolute bottom-4 left-4 right-4">
@@ -648,7 +657,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- Card grande — imagen editorial -->
       <div class="group relative aspect-[4/5] overflow-hidden rounded-xl soft-glow bg-white cursor-pointer"
            onclick="document.getElementById('citas').scrollIntoView({behavior:'smooth'})">
-        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async"
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-zoom-in zoomable" loading="lazy" decoding="async"
+             data-titulo="Diseño de Autor · Soft Gel"
              src="img/diseno-destacado.jpeg"
              alt="Diseño de autor burdeos con flores 3D en relieve, difuminado y cristalería"
              onerror="this.style.display='none'; this.parentElement.classList.add('brand-gradient')"/>
@@ -776,67 +786,67 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 px-2">
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-01.jpeg" alt="Soft gel con diseño 3D, cristalería, francesa y difuminado"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-02.jpeg" alt="Soft gel 3D con difuminado, francesas, cristalería y cromado"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-03.jpeg" alt="Soft gel con francesa, polka dots y cristalería en relieve 3D"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-04.jpeg" alt="Soft gel cromado con difuminado y relieve de autor"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-05.jpeg" alt="Soft gel cromado con relieve de autor"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-06.jpeg" alt="Soft gel difuminado con francesa, cromado y cristalería"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-07.jpeg" alt="Soft gel con efecto ojo de gato"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-08.jpeg" alt="Soft gel ojo de gato con francesa"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-09.jpeg" alt="Soft gel ojo de gato con relieve"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-10.jpeg" alt="Soft gel con relieve y polka dots de autor"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-11.jpeg" alt="Manicura permanente azul marino con acabado espejo"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-12.jpeg" alt="Esmaltado permanente nivelado con efecto ojo de gato"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-13.jpeg" alt="Esmaltado permanente con relieve, difuminado y cromado"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-14.jpeg" alt="Permanente con francesas, efecto carey y cristalería"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-15.jpeg" alt="Esmaltado permanente con diseño en relieve"/>
       </div>
       <div class="gal-tile aspect-square overflow-hidden rounded-lg bg-surface-container">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" loading="lazy" decoding="async" onerror="ocultarTile(this)"
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-zoom-in zoomable" loading="lazy" decoding="async" onerror="ocultarTile(this)"
              src="img/galeria-16.jpeg" alt="Esmaltado permanente con relieve"/>
       </div>
     </div>
@@ -1076,6 +1086,75 @@ function enviarPorWhatsApp() {
       observer.observe(section);
     });
   }
+</script>
+
+<!-- ── Lightbox: ficha de imagen a pantalla completa ─────────────────────── -->
+<div id="lightbox" class="fixed inset-0 z-[80] items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lb-titulo">
+  <div class="lb-backdrop absolute inset-0 bg-inverse-surface/70 backdrop-blur-sm" onclick="cerrarLightbox()"></div>
+  <div class="lb-card relative brand-gradient p-[3px] rounded-3xl brand-glow w-full max-w-[440px] max-h-[92vh]">
+    <div class="bg-surface rounded-[21px] overflow-hidden flex flex-col max-h-[calc(92vh-6px)]">
+      <div class="bg-surface-container flex items-center justify-center">
+        <img id="lb-img" class="w-full max-h-[50vh] object-contain" src="" alt=""/>
+      </div>
+      <div class="p-5 sm:p-6 overflow-y-auto">
+        <div class="brand-line w-14 mb-3"></div>
+        <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] brand-text font-bold block mb-1.5">deFeñaNails · Fine Art</span>
+        <h3 id="lb-titulo" class="font-headline-md text-[22px] leading-snug mb-1.5"></h3>
+        <p id="lb-desc" class="font-body-md text-[15px] leading-relaxed text-secondary"></p>
+      </div>
+    </div>
+    <button onclick="cerrarLightbox()" aria-label="Cerrar" class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-surface text-on-surface brand-ring flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg">
+      <span class="material-symbols-outlined text-[20px]">close</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const lb     = document.getElementById("lightbox");
+    const lbImg  = document.getElementById("lb-img");
+    const lbTit  = document.getElementById("lb-titulo");
+    const lbDesc = document.getElementById("lb-desc");
+
+    function tituloDe(img) {
+      if (img.dataset.titulo) return img.dataset.titulo;
+      const a = (img.getAttribute("alt") || "").toLowerCase();
+      const s = (img.getAttribute("src") || "").toLowerCase();
+      if (s.includes("press-on"))                         return "Press-on Personalizado";
+      if (a.includes("french"))                           return "Manicura French";
+      if (a.includes("soft gel") || a.includes("softgel")) return "Soft Gel · Diseño de Autor";
+      if (a.includes("permanente"))                       return "Esmaltado Permanente";
+      return "Diseño de Autor";
+    }
+
+    window.abrirLightbox = function (img) {
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.getAttribute("alt") || "";
+      lbTit.textContent  = tituloDe(img);
+      lbDesc.textContent = img.dataset.desc || img.getAttribute("alt") || "";
+      lb.classList.add("abierto");
+      document.body.style.overflow = "hidden";
+    };
+
+    window.cerrarLightbox = function () {
+      lb.classList.remove("abierto");
+      document.body.style.overflow = "";
+    };
+
+    // Delegación en fase de captura: intercepta el clic antes de que llegue al
+    // contenedor (que puede tener su propio onclick de "reservar").
+    document.addEventListener("click", function (e) {
+      const img = e.target.closest && e.target.closest("img.zoomable");
+      if (!img) return;
+      e.preventDefault();
+      e.stopPropagation();
+      abrirLightbox(img);
+    }, true);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && lb.classList.contains("abierto")) cerrarLightbox();
+    });
+  })();
 </script>
 
 </body>
